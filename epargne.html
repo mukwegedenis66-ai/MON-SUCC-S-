@@ -1,9 +1,515 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Épargne - Mon succès</title><link rel="stylesheet" href="css/style.css"></head><body>
-<header><a class="logo" href="index.html">MON SUCCÈS</a><nav><a class="active" href="epargne.html">Épargne</a><a href="pret.html">Prêt</a><a href="compte.html">Mon compte</a></nav></header>
-<main class="container"><section class="page-head"><p class="tag">MON ESPACE</p><h1>Épargne</h1><p>Suivez votre épargne en FCFA.</p></section>
-<div id="authNotice" class="notice">Connectez-vous pour accéder à votre épargne.</div>
-<section id="dashboard" class="hidden"><div class="cards"><div class="card"><span>Solde d’épargne</span><strong id="balance">0 FCFA</strong></div><div class="card"><span>Objectif</span><strong id="goal">0 FCFA</strong></div><div class="card"><span>Progression</span><strong id="progress">0 %</strong></div></div>
-<div class="panel"><h2>Ajouter une épargne</h2><form id="savingForm"><input id="amount" type="number" min="1" step="1" placeholder="Montant en FCFA" required><button class="btn" type="submit">Ajouter</button></form></div>
-<div class="panel"><h2>Historique</h2><div id="history">Aucune opération.</div></div></section></main><footer>© 2026 Mon succès</footer>
-<script type="module" src="js/epargne.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Mon Succès — votre espace personnel d'épargne."
+  >
+
+  <title>Mon Succès — Mon Épargne</title>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* Petites améliorations spécifiques à la page Épargne */
+
+    .saving-hero {
+      padding: 45px 0 30px;
+    }
+
+    .saving-hero h1 {
+      color: var(--primary-dark);
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 8px;
+    }
+
+    .saving-hero p {
+      color: var(--muted);
+    }
+
+    .saving-layout {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 24px;
+      padding-bottom: 50px;
+    }
+
+    .saving-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .saving-card h2 {
+      color: var(--primary-dark);
+      margin-bottom: 18px;
+      font-size: 1.25rem;
+    }
+
+    .balance-big {
+      font-size: clamp(2.3rem, 7vw, 3.8rem);
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.1;
+      margin: 10px 0;
+    }
+
+    .balance-label {
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .goal-box {
+      background: var(--primary-light);
+      border-radius: 14px;
+      padding: 20px;
+      margin-top: 22px;
+    }
+
+    .goal-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 10px;
+    }
+
+    .goal-header strong {
+      color: var(--primary-dark);
+    }
+
+    .progress-container {
+      margin-top: 12px;
+    }
+
+    .progress-bar {
+      height: 12px;
+      background: #dfe9e5;
+    }
+
+    .progress {
+      width: 0%;
+    }
+
+    .saving-form {
+      display: grid;
+      gap: 15px;
+    }
+
+    .saving-form button {
+      width: 100%;
+    }
+
+    .info-box {
+      display: flex;
+      gap: 13px;
+      padding: 16px;
+      background: #f7faf8;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-top: 20px;
+    }
+
+    .info-icon {
+      font-size: 1.4rem;
+    }
+
+    .history-list {
+      margin-top: 10px;
+    }
+
+    .empty-history {
+      text-align: center;
+      padding: 30px 10px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 800px) {
+      .saving-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .saving-hero {
+        padding-top: 35px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ================= HEADER ================= -->
+
+  <header>
+
+    <div class="container">
+
+      <a href="index.html" class="logo">
+        MON SUCCÈS
+      </a>
+
+      <nav>
+
+        <a href="index.html">
+          Accueil
+        </a>
+
+        <a href="epargne.html">
+          Épargne
+        </a>
+
+        <a href="pret.html">
+          Prêt
+        </a>
+
+        <a href="compte.html">
+          Mon compte
+        </a>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+
+  <!-- ================= CONTENU ================= -->
+
+  <main>
+
+    <section class="saving-hero">
+
+      <div class="container">
+
+        <span class="badge badge-success">
+          ESPACE PERSONNEL
+        </span>
+
+        <h1>
+          Mon épargne
+        </h1>
+
+        <p>
+          Suivez votre épargne et avancez progressivement
+          vers vos objectifs.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <section style="padding-top:10px;">
+
+      <div class="container saving-layout">
+
+
+        <!-- ================= COLONNE PRINCIPALE ================= -->
+
+        <div>
+
+
+          <!-- SOLDE -->
+
+          <div class="saving-card">
+
+            <span class="balance-label">
+              Solde actuel
+            </span>
+
+            <div
+              id="balance"
+              class="balance-big"
+            >
+              0 FCFA
+            </div>
+
+            <p class="text-muted">
+              Votre épargne disponible
+            </p>
+
+
+            <!-- OBJECTIF -->
+
+            <div class="goal-box">
+
+              <div class="goal-header">
+
+                <strong>
+                  🎯 Objectif d'épargne
+                </strong>
+
+                <strong id="goalAmount">
+                  0 FCFA
+                </strong>
+
+              </div>
+
+              <div class="progress-container">
+
+                <div class="progress-bar">
+
+                  <div
+                    id="progress"
+                    class="progress"
+                  ></div>
+
+                </div>
+
+              </div>
+
+              <p
+                id="progressText"
+                class="text-muted mt-1"
+              >
+                0% de votre objectif
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- HISTORIQUE -->
+
+          <div class="saving-card history mt-3">
+
+            <h2>
+              📊 Historique de votre épargne
+            </h2>
+
+            <div
+              id="history"
+              class="history-list"
+            >
+
+              <div class="empty-history">
+                Aucun mouvement d'épargne pour le moment.
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- ================= COLONNE DROITE ================= -->
+
+        <div>
+
+
+          <!-- AJOUTER UNE ÉPARGNE -->
+
+          <div class="saving-card">
+
+            <h2>
+              💰 Ajouter à mon épargne
+            </h2>
+
+            <p class="text-muted mb-2">
+              Enregistrez un nouveau montant dans
+              votre espace d'épargne.
+            </p>
+
+
+            <form
+              id="savingForm"
+              class="saving-form"
+            >
+
+              <div class="form-group">
+
+                <label for="amount">
+                  Montant
+                </label>
+
+                <input
+                  id="amount"
+                  name="amount"
+                  type="number"
+                  min="1"
+                  step="1"
+                  placeholder="Ex. 10000"
+                  required
+                >
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label for="savingNote">
+                  Description
+                </label>
+
+                <input
+                  id="savingNote"
+                  name="note"
+                  type="text"
+                  placeholder="Ex. Épargne du mois"
+                >
+
+              </div>
+
+
+              <button
+                type="submit"
+                class="btn"
+              >
+                Ajouter à mon épargne
+              </button>
+
+            </form>
+
+
+            <div class="info-box">
+
+              <div class="info-icon">
+                🔐
+              </div>
+
+              <div>
+
+                <strong>
+                  Votre espace personnel
+                </strong>
+
+                <p class="text-muted">
+                  Les informations affichées ici sont
+                  liées à votre compte.
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- CONSEIL -->
+
+          <div class="saving-card mt-3">
+
+            <div class="icon">
+              💡
+            </div>
+
+            <h2>
+              Conseil du jour
+            </h2>
+
+            <p class="text-muted">
+              Une petite épargne régulière peut vous
+              aider à construire progressivement vos
+              projets.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= CTA ================= -->
+
+    <section>
+
+      <div class="container">
+
+        <div class="cta">
+
+          <h2>
+            Un projet en tête ?
+          </h2>
+
+          <p>
+            Préparez votre projet progressivement grâce
+            à votre épargne.
+          </p>
+
+          <a
+            href="pret.html"
+            class="btn btn-secondary"
+          >
+            Découvrir les prêts
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- ================= FOOTER ================= -->
+
+  <footer>
+
+    <div class="container">
+
+      <div>
+
+        <h3>
+          MON SUCCÈS
+        </h3>
+
+        <p>
+          Épargner. Préparer. Réussir.
+        </p>
+
+      </div>
+
+      <div>
+
+        <h3>
+          Navigation
+        </h3>
+
+        <p>
+          <a href="index.html">Accueil</a><br>
+          <a href="epargne.html">Épargne</a><br>
+          <a href="pret.html">Prêt</a><br>
+          <a href="compte.html">Mon compte</a>
+        </p>
+
+      </div>
+
+      <div class="footer-bottom">
+
+        © 2026 Mon Succès — Tous droits réservés.
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- ================= SCRIPT ÉPARGNE ================= -->
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+    type="text/javascript"
+  ></script>
+
+  <script
+    type="module"
+    src="js/epargne.js"
+  ></script>
+
+</body>
+  </html>
