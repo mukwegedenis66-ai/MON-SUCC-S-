@@ -1,1 +1,948 @@
+/* =========================================================
+   MON SUCCÈS — STYLE PRINCIPAL
+   ========================================================= */
 
+:root {
+  --primary: #0b6b4f;
+  --primary-dark: #064936;
+  --primary-light: #e8f5f0;
+  --secondary: #d9a441;
+  --secondary-dark: #b98220;
+
+  --background: #f5f8f7;
+  --surface: #ffffff;
+  --text: #17231f;
+  --muted: #6b7772;
+  --border: #e2e9e6;
+
+  --success: #16845d;
+  --danger: #c74646;
+  --warning: #d89a22;
+
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 18px 50px rgba(0, 0, 0, 0.12);
+
+  --radius-sm: 8px;
+  --radius: 14px;
+  --radius-lg: 22px;
+
+  --max-width: 1180px;
+}
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
+
+  background: var(--background);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+/* =========================================================
+   CONTAINER
+   ========================================================= */
+
+.container {
+  width: min(92%, var(--max-width));
+  margin: 0 auto;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+header {
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(12px);
+}
+
+header .container {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+}
+
+header h1,
+.logo {
+  color: var(--primary);
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+nav a {
+  padding: 9px 14px;
+  border-radius: 9px;
+  color: #45534d;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: 0.2s ease;
+}
+
+nav a:hover {
+  color: var(--primary);
+  background: var(--primary-light);
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+  padding: 85px 0;
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(217, 164, 65, 0.18),
+      transparent 35%
+    ),
+    linear-gradient(135deg, #f2faf6 0%, #ffffff 65%);
+}
+
+.hero .container {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 6vw, 4.2rem);
+  line-height: 1.08;
+  letter-spacing: -2px;
+  margin-bottom: 22px;
+  color: var(--primary-dark);
+}
+
+.hero h1 span {
+  color: var(--secondary-dark);
+}
+
+.hero p {
+  max-width: 650px;
+  color: var(--muted);
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+}
+
+.hero-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 35px;
+  box-shadow: var(--shadow-lg);
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.btn,
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  padding: 12px 21px;
+  border-radius: 10px;
+
+  background: var(--primary);
+  color: white;
+
+  font-weight: 700;
+  font-size: 0.95rem;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.btn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(11, 107, 79, 0.22);
+}
+
+.btn-secondary {
+  background: var(--secondary);
+  color: #1f1809;
+}
+
+.btn-secondary:hover {
+  background: var(--secondary-dark);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+}
+
+.btn-outline:hover {
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  box-shadow: none;
+}
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+
+section {
+  padding: 70px 0;
+}
+
+.section-title {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 45px;
+}
+
+.section-title h2 {
+  color: var(--primary-dark);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  margin-bottom: 10px;
+}
+
+.section-title p {
+  color: var(--muted);
+}
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
+.cards,
+.features,
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 25px;
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+.card h3 {
+  color: var(--primary-dark);
+  margin-bottom: 9px;
+}
+
+.card p {
+  color: var(--muted);
+}
+
+/* =========================================================
+   ICONES
+   ========================================================= */
+
+.icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-light);
+  color: var(--primary);
+  font-size: 1.4rem;
+  margin-bottom: 18px;
+}
+
+/* =========================================================
+   FORMULAIRES
+   ========================================================= */
+
+form {
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+label {
+  display: block;
+  margin-bottom: 7px;
+  color: #33423c;
+  font-weight: 650;
+  font-size: 0.92rem;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 13px 14px;
+
+  border: 1px solid var(--border);
+  border-radius: 10px;
+
+  background: #fff;
+  color: var(--text);
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(11, 107, 79, 0.1);
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* =========================================================
+   AUTH / CONNEXION / INSCRIPTION
+   ========================================================= */
+
+.auth-container {
+  min-height: calc(100vh - 72px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 15px;
+}
+
+.auth-card {
+  width: min(100%, 460px);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 35px;
+  box-shadow: var(--shadow-lg);
+}
+
+.auth-card h2 {
+  text-align: center;
+  color: var(--primary-dark);
+  margin-bottom: 8px;
+}
+
+.auth-card > p {
+  text-align: center;
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+
+.auth-card .btn {
+  width: 100%;
+}
+
+.auth-link {
+  text-align: center;
+  margin-top: 20px;
+  color: var(--muted);
+}
+
+.auth-link a {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+/* =========================================================
+   TABLEAU DE BORD
+   ========================================================= */
+
+.dashboard {
+  padding: 45px 0 70px;
+}
+
+.dashboard-header {
+  margin-bottom: 30px;
+}
+
+.dashboard-header h2 {
+  color: var(--primary-dark);
+  margin-bottom: 5px;
+}
+
+.dashboard-header p {
+  color: var(--muted);
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 25px;
+}
+
+/* =========================================================
+   SOLDE ÉPARGNE
+   ========================================================= */
+
+.balance-card {
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary-dark),
+      var(--primary)
+    );
+
+  color: white;
+  border-radius: var(--radius-lg);
+  padding: 30px;
+  box-shadow: var(--shadow);
+}
+
+.balance-card .label {
+  opacity: 0.8;
+  font-size: 0.9rem;
+}
+
+.balance-card .amount {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  margin: 7px 0;
+}
+
+.balance-card .currency {
+  opacity: 0.8;
+}
+
+/* =========================================================
+   PROGRESSION
+   ========================================================= */
+
+.progress-container {
+  margin-top: 20px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #e4ebe8;
+}
+
+.progress {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--secondary);
+  transition: width 0.4s ease;
+}
+
+/* =========================================================
+   STATISTIQUES
+   ========================================================= */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 25px;
+}
+
+.stat {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+
+.stat small {
+  display: block;
+  color: var(--muted);
+  margin-bottom: 5px;
+}
+
+.stat strong {
+  display: block;
+  color: var(--primary-dark);
+  font-size: 1.5rem;
+}
+
+/* =========================================================
+   HISTORIQUE
+   ========================================================= */
+
+.history {
+  margin-top: 25px;
+}
+
+.history-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.history-item:last-child {
+  border-bottom: 0;
+}
+
+.history-date {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.history-amount {
+  color: var(--success);
+  font-weight: 800;
+}
+
+/* =========================================================
+   ALERTES / MESSAGES
+   ========================================================= */
+
+.alert {
+  padding: 13px 15px;
+  border-radius: 10px;
+  margin-bottom: 18px;
+  font-size: 0.92rem;
+}
+
+.alert-success {
+  background: #e8f7f0;
+  color: #116b4d;
+  border: 1px solid #c7e9db;
+}
+
+.alert-danger {
+  background: #fff0f0;
+  color: #a53333;
+  border: 1px solid #f0cccc;
+}
+
+.alert-warning {
+  background: #fff7e5;
+  color: #8d6518;
+  border: 1px solid #f0dfb1;
+}
+
+/* =========================================================
+   BADGES
+   ========================================================= */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 30px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.badge-success {
+  background: #e5f6ef;
+  color: var(--success);
+}
+
+.badge-warning {
+  background: #fff4da;
+  color: var(--warning);
+}
+
+.badge-danger {
+  background: #ffebeb;
+  color: var(--danger);
+}
+
+/* =========================================================
+   PRÊTS
+   ========================================================= */
+
+.loan-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 30px;
+  box-shadow: var(--shadow-sm);
+}
+
+.loan-card h3 {
+  color: var(--primary-dark);
+  margin-bottom: 12px;
+}
+
+.loan-amount {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin: 15px 0;
+}
+
+.loan-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.loan-detail {
+  padding: 14px;
+  border-radius: 10px;
+  background: var(--background);
+}
+
+.loan-detail small {
+  display: block;
+  color: var(--muted);
+}
+
+.loan-detail strong {
+  color: var(--text);
+}
+
+/* =========================================================
+   TABLES
+   ========================================================= */
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 650px;
+}
+
+th,
+td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+th {
+  background: #f7faf8;
+  color: var(--primary-dark);
+  font-size: 0.85rem;
+}
+
+td {
+  color: #47544f;
+}
+
+tr:last-child td {
+  border-bottom: 0;
+}
+
+/* =========================================================
+   CTA
+   ========================================================= */
+
+.cta {
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary-dark),
+      var(--primary)
+    );
+
+  color: white;
+  border-radius: var(--radius-lg);
+  padding: 50px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.cta h2 {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.cta p {
+  max-width: 650px;
+  margin: 0 auto 25px;
+  opacity: 0.85;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer {
+  margin-top: 50px;
+  background: #10231d;
+  color: white;
+  padding: 45px 0 25px;
+}
+
+footer .container {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+footer h3 {
+  margin-bottom: 10px;
+}
+
+footer p {
+  color: #b8c5bf;
+}
+
+.footer-bottom {
+  width: 100%;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  margin-top: 25px;
+  padding-top: 20px;
+  color: #9eaaa5;
+  font-size: 0.85rem;
+}
+
+/* =========================================================
+   UTILITAIRES
+   ========================================================= */
+
+.text-center {
+  text-align: center;
+}
+
+.text-muted {
+  color: var(--muted);
+}
+
+.text-success {
+  color: var(--success);
+}
+
+.text-danger {
+  color: var(--danger);
+}
+
+.mt-1 {
+  margin-top: 10px;
+}
+
+.mt-2 {
+  margin-top: 20px;
+}
+
+.mt-3 {
+  margin-top: 30px;
+}
+
+.mb-1 {
+  margin-bottom: 10px;
+}
+
+.mb-2 {
+  margin-bottom: 20px;
+}
+
+.mb-3 {
+  margin-bottom: 30px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* =========================================================
+   RESPONSIVE — TABLETTE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .hero .container {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .cards,
+  .features,
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+  header .container {
+    min-height: auto;
+    padding: 14px 0;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  header h1,
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  nav {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  nav a {
+    padding: 7px 9px;
+    font-size: 0.84rem;
+  }
+
+  .hero {
+    padding: 55px 0;
+  }
+
+  .hero h1 {
+    font-size: 2.35rem;
+    letter-spacing: -1px;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  section {
+    padding: 50px 0;
+  }
+
+  .cards,
+  .features,
+  .grid,
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
+  .card,
+  .loan-card {
+    padding: 22px;
+  }
+
+  .auth-card {
+    padding: 25px 20px;
+  }
+
+  .balance-card {
+    padding: 25px;
+  }
+
+  .balance-card .amount {
+    font-size: 2.4rem;
+  }
+
+  .loan-details {
+    grid-template-columns: 1fr;
+  }
+
+  .cta {
+    padding: 35px 22px;
+  }
+
+  footer {
+    padding: 35px 0 20px;
+  }
+}
+
+/* =========================================================
+   PETITES ANIMATIONS
+   ========================================================= */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card,
+.auth-card,
+.balance-card,
+.loan-card {
+  animation: fadeIn 0.45s ease both;
+  }
