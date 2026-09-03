@@ -1,2 +1,76 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Mon compte - Mon succès</title><link rel="stylesheet" href="css/style.css"></head><body><main class="auth"><a class="logo" href="index.html">MON SUCCÈS</a><div class="panel"><h1>Mon compte</h1><p id="profile">Chargement...</p><button id="logout" class="btn">Se déconnecter</button></div></main><script type="module" src="js/app.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Mon compte - Mon Succès</title>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <header>
+    <h1>MON SUCCÈS</h1>
+
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="epargne.html">Épargne</a>
+      <a href="pret.html">Prêt</a>
+      <a href="compte.html">Mon compte</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="card">
+
+      <h2>👤 Mon compte</h2>
+
+      <div id="accountInfo">
+        Chargement de votre compte...
+      </div>
+
+    </section>
+
+    <section class="card">
+
+      <h2>💰 Mes demandes de prêt</h2>
+
+      <div id="loans">
+        Chargement de vos demandes...
+      </div>
+
+    </section>
+
+    <section class="card">
+
+      <h2>📊 Mon épargne</h2>
+
+      <p>
+        Consultez votre épargne et votre historique.
+      </p>
+
+      <a href="epargne.html">
+        <button type="button">
+          Voir mon épargne
+        </button>
+      </a>
+
+    </section>
+
+    <section class="card">
+
+      <button id="logoutButton" type="button">
+        Se déconnecter
+      </button>
+
+    </section>
+
+  </main>
+
+  <script type="module" src="js/compte.js?v=1"></script>
+
+</body>
+      </html>
