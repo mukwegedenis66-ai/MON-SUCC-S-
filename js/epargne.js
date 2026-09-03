@@ -6,28 +6,28 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 const money = (n) =>
   new Intl.NumberFormat("fr-FR").format(n) + " FCFA";
 
-const notice = document.getElementById("authNotice");
-const dashboard = document.getElementById("dashboard");
-
 async function load() {
   const {
-    data: { user }
+    data: { user },
+    error: userError
   } = await supabase.auth.getUser();
 
-  if (!user) {
-    notice.classList.remove("hidden");
+  if (userError) {
+    alert(userError.message);
     return;
   }
 
-  notice.classList.add("hidden");
-  dashboard.classList.remove("hidden");
+  if (!user) {
+    alert("Veuillez vous connecter.");
+    return;
+  }
 
   const { data: operations, error } = await supabase
     .from("epargne")
     .select("*")
     .eq("user_id", user.id)
     .order("created_at", { ascending: false });
-alert("Opérations reçues : " + (operations ? operations.length : 0));
+
   if (error) {
     alert(error.message);
     return;
@@ -46,15 +46,27 @@ alert("Opérations reçues : " + (operations ? operations.length : 0));
   const goal = 500000;
 
   document.getElementById("balance").textContent = money(balance);
-  document.getElementById("goal").textContent = money(goal);
+  document.getElementById("goalAmount").textContent = money(goal);
 
-  document.getElementById("progress").textContent =
-    Math.min(100, Math.round((balance / goal) * 100)) + " %";
+  const percent = Math.min(
+    100,
+    Math.round((balance / goal) * 100)
+  );
+
+  document.getElementById("progress").style.width =
+    percent + "%";
+
+  document.getElementById("progressText").textContent =
+    percent + "% de votre objectif";
 
   const history = document.getElementById("history");
 
   if (!rows.length) {
-    history.innerHTML = "Aucune opération.";
+    history.innerHTML = `
+      <div class="empty-history">
+        Aucun mouvement d'épargne pour le moment.
+      </div>
+    `;
     return;
   }
 
@@ -79,8 +91,14 @@ document
     e.preventDefault();
 
     const {
-      data: { user }
+      data: { user },
+      error: userError
     } = await supabase.auth.getUser();
+
+    if (userError) {
+      alert(userError.message);
+      return;
+    }
 
     if (!user) {
       alert("Veuillez vous connecter.");
