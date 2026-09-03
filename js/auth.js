@@ -42,7 +42,7 @@ if (signupForm) {
       });
     }
 
-    .window.location.href = "confirmation.html";
+    window.location.href = "confirmation.html";
   });
 }
 
