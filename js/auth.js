@@ -12,15 +12,20 @@ if (signupForm) {
     e.preventDefault();
 
     message.textContent = "Création du compte...";
+    message.className = "";
 
-    const name = document.getElementById("name").value;
-    const phone = document.getElementById("phone").value;
-    const email = document.getElementById("email").value;
+    const name = document.getElementById("name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
 
     const { data, error } = await supabase.auth.signUp({
       email,
-      password
+      password,
+      options: {
+        emailRedirectTo:
+          "https://mukwegedenis66-ai.github.io/MON-SUCC-S-/"
+      }
     });
 
     if (error) {
@@ -39,7 +44,7 @@ if (signupForm) {
 
     message.className = "success";
     message.textContent =
-      "Compte créé. Vérifiez votre adresse email si une confirmation est demandée.";
+      "Compte créé ! Vérifiez votre e-mail pour confirmer votre inscription.";
   });
 }
 
@@ -48,8 +53,9 @@ if (loginForm) {
     e.preventDefault();
 
     message.textContent = "Connexion...";
+    message.className = "";
 
-    const email = document.getElementById("email").value;
+    const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
 
     const { error } = await supabase.auth.signInWithPassword({
@@ -65,4 +71,4 @@ if (loginForm) {
 
     window.location.href = "epargne.html";
   });
-                              }
+      }      
