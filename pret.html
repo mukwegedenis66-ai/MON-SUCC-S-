@@ -1,2 +1,88 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Prêt - Mon succès</title><link rel="stylesheet" href="css/style.css"></head><body><header><a class="logo" href="index.html">MON SUCCÈS</a><nav><a href="epargne.html">Épargne</a><a class="active" href="pret.html">Prêt</a><a href="compte.html">Mon compte</a></nav></header><main class="container"><section class="page-head"><p class="tag">PROCHAINEMENT</p><h1>Demander un prêt</h1><p>Cette section sera activée après la mise en place des règles de prêt et de validation.</p></section><div class="panel"><h2>À préparer</h2><p>Montant demandé, durée, objet du prêt, conditions et suivi des remboursements.</p></div></main><footer>© 2026 Mon succès</footer></body></html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Prêt - Mon Succès</title>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <header>
+    <h1>MON SUCCÈS</h1>
+
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="epargne.html">Épargne</a>
+      <a href="pret.html">Prêt</a>
+      <a href="compte.html">Mon compte</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="card">
+
+      <h2>💰 Demande de prêt</h2>
+
+      <p>
+        Faites votre demande de prêt simplement et rapidement.
+      </p>
+
+      <form id="pretForm">
+
+        <label for="montant">
+          Montant souhaité (FCFA)
+        </label>
+
+        <input
+          type="number"
+          id="montant"
+          placeholder="Exemple : 100000"
+          min="1000"
+          required
+        >
+
+        <label for="duree">
+          Durée de remboursement
+        </label>
+
+        <select id="duree" required>
+          <option value="">Choisir une durée</option>
+          <option value="1">1 mois</option>
+          <option value="2">2 mois</option>
+          <option value="3">3 mois</option>
+          <option value="6">6 mois</option>
+          <option value="12">12 mois</option>
+        </select>
+
+        <label for="motif">
+          Motif du prêt
+        </label>
+
+        <textarea
+          id="motif"
+          placeholder="Expliquez brièvement l'utilisation du prêt"
+          rows="4"
+          required
+        ></textarea>
+
+        <button type="submit">
+          Envoyer ma demande
+        </button>
+
+      </form>
+
+      <div id="message"></div>
+
+    </section>
+
+  </main>
+
+  <script type="module" src="js/pret.js?v=1"></script>
+
+</body>
+          </html>
