@@ -42,9 +42,7 @@ if (signupForm) {
       });
     }
 
-    message.className = "success";
-    message.textContent =
-      "Compte créé ! Vérifiez votre e-mail pour confirmer votre inscription.";
+    .window.location.href = "confirmation.html";
   });
 }
 
