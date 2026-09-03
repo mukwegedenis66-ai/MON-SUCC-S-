@@ -27,7 +27,7 @@ async function load() {
     .select("*")
     .eq("user_id", user.id)
     .order("created_at", { ascending: false });
-
+alert("Opérations reçues : " + (operations ? operations.length : 0));
   if (error) {
     alert(error.message);
     return;
