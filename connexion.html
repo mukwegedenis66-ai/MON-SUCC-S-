@@ -1,2 +1,268 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Connexion - Mon succès</title><link rel="stylesheet" href="css/style.css"></head><body><main class="auth"><a class="logo" href="index.html">MON SUCCÈS</a><div class="panel"><h1>Connexion</h1><form id="loginForm"><input id="email" type="email" placeholder="Email" required><input id="password" type="password" placeholder="Mot de passe" required><button class="btn">Se connecter</button></form><p id="message"></p><p>Pas encore de compte ? <a href="inscription.html">Inscrivez-vous</a></p></div></main><script type="module" src="js/auth.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connexion — MON SUCCÈS</title>
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    .auth-page {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #f3fff8, #ffffff, #eafff1);
+    }
+
+    .auth-header {
+      background: #fff;
+      border-bottom: 1px solid #e5eee9;
+      padding: 14px 20px;
+    }
+
+    .auth-brand {
+      max-width: 720px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      background: #e9f8ef;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 27px;
+    }
+
+    .brand-name {
+      font-size: 22px;
+      font-weight: 800;
+      color: #075c43;
+      line-height: 1.1;
+    }
+
+    .brand-tagline {
+      font-size: 13px;
+      color: #69756f;
+      margin-top: 3px;
+    }
+
+    .menu-btn {
+      width: 45px;
+      height: 45px;
+      border: 0;
+      border-radius: 14px;
+      background: #075c43;
+      color: white;
+      font-size: 23px;
+    }
+
+    .auth-container {
+      max-width: 600px;
+      margin: 35px auto;
+      padding: 0 18px 40px;
+    }
+
+    .auth-card {
+      background: rgba(255,255,255,.96);
+      border: 1px solid #e1ebe5;
+      border-radius: 25px;
+      padding: 32px 24px;
+      box-shadow: 0 15px 45px rgba(0,70,45,.09);
+    }
+
+    .auth-icon {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 15px;
+      border-radius: 50%;
+      background: #e7f7ed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+    }
+
+    .auth-title {
+      text-align: center;
+      color: #073e30;
+      font-size: 32px;
+      margin: 0;
+    }
+
+    .auth-subtitle {
+      text-align: center;
+      color: #66736d;
+      font-size: 16px;
+      line-height: 1.5;
+      margin: 10px auto 26px;
+    }
+
+    .auth-form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .auth-input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 17px 18px;
+      border: 1.5px solid #d9e2de;
+      border-radius: 16px;
+      font-size: 17px;
+      outline: none;
+      background: #fff;
+    }
+
+    .auth-input:focus {
+      border-color: #087653;
+      box-shadow: 0 0 0 3px rgba(8,118,83,.10);
+    }
+
+    .auth-button {
+      width: 100%;
+      border: 0;
+      border-radius: 16px;
+      padding: 17px;
+      margin-top: 4px;
+      background: #087653;
+      color: white;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .auth-button:active {
+      transform: scale(.99);
+    }
+
+    .auth-link {
+      text-align: center;
+      margin-top: 22px;
+      font-size: 16px;
+      color: #596760;
+    }
+
+    .auth-link a {
+      color: #087653;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    #message {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 15px;
+    }
+
+    #message.success {
+      color: #087653;
+    }
+
+    #message.error {
+      color: #c62828;
+    }
+
+    @media (max-width: 480px) {
+      .auth-header {
+        padding: 12px 15px;
+      }
+
+      .auth-container {
+        margin: 22px auto;
+        padding: 0 12px 30px;
+      }
+
+      .auth-card {
+        padding: 27px 18px;
+        border-radius: 22px;
+      }
+
+      .auth-title {
+        font-size: 29px;
+      }
+
+      .auth-input {
+        font-size: 16px;
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body class="auth-page">
+
+<header class="auth-header">
+  <div class="auth-brand">
+    <div class="brand-left">
+      <div class="brand-logo">🌿</div>
+      <div>
+        <div class="brand-name">MON SUCCÈS</div>
+        <div class="brand-tagline">Épargner • Partager • Réussir</div>
+      </div>
+    </div>
+
+    <button class="menu-btn" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<main class="auth-container">
+  <section class="auth-card">
+
+    <div class="auth-icon">🔐</div>
+
+    <h1 class="auth-title">Connexion</h1>
+
+    <p class="auth-subtitle">
+      Connectez-vous à votre compte pour accéder
+      à toutes les fonctionnalités.
+    </p>
+
+    <form id="loginForm" class="auth-form">
+
+      <input
+        class="auth-input"
+        type="email"
+        id="email"
+        placeholder="Email"
+        required
+      >
+
+      <input
+        class="auth-input"
+        type="password"
+        id="password"
+        placeholder="Mot de passe"
+        required
+      >
+
+      <button class="auth-button" type="submit">
+        Se connecter →
+      </button>
+
+    </form>
+
+    <div id="message"></div>
+
+    <div class="auth-link">
+      Pas encore de compte ?
+      <a href="inscription.html">Inscrivez-vous</a>
+    </div>
+
+  </section>
+</main>
+
+<script type="module" src="js/auth.js"></script>
+
+</body>
+  </html>
