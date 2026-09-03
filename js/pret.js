@@ -15,8 +15,6 @@ const message = document.getElementById("message");
 form?.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  message.textContent = "Envoi de votre demande...";
-
   const {
     data: { user },
     error: userError
@@ -77,8 +75,5 @@ form?.addEventListener("submit", async (e) => {
     return;
   }
 
-  message.textContent =
-    "✅ Votre demande de prêt a été envoyée avec succès.";
-
-  form.reset();
+  window.location.href = "confirmation-pret.html";
 });
