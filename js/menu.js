@@ -88,6 +88,11 @@ header {
 header .container {
   position: relative !important;
 
+  width: 100% !important;
+  max-width: none !important;
+
+  margin: 0 !important;
+
   display: flex !important;
   flex-direction: row !important;
 
@@ -96,6 +101,7 @@ header .container {
 
   min-height: 72px !important;
 
+  padding-left: 20px !important;
   padding-right: 80px !important;
 }
 
