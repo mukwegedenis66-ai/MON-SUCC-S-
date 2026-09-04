@@ -1,129 +1,262 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Mon Succès — Épargne & Prêts</title>
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>MON SUCCÈS — Épargne & Prêts</title>
 
   <meta
     name="description"
-    content="Mon Succès vous accompagne dans votre épargne et vos projets grâce à une plateforme simple et moderne."
+    content="MON SUCCÈS vous accompagne dans votre épargne, vos projets et vos demandes de prêt."
   >
 
-  <link rel="stylesheet" href="css/style.css">
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
+
 </head>
+
 
 <body>
 
-  <!-- ================= HEADER ================= -->
 
-  <header>
+  <!-- ==================================================
+       HEADER
+       ================================================== -->
+
+  <header class="home-header">
+
     <div class="container">
 
-      <a href="index.html" class="logo">
-        MON SUCCÈS
+
+      <!-- LOGO -->
+
+      <a
+        href="index.html"
+        class="home-brand"
+      >
+
+        <div class="home-brand-icon">
+          🌿
+        </div>
+
+        <div class="home-brand-text">
+
+          <strong>
+            MON SUCCÈS
+          </strong>
+
+          <span>
+            Épargner • Partager • Réussir
+          </span>
+
+        </div>
+
       </a>
 
-      <nav>
-        <a href="index.html">Accueil</a>
-        <a href="epargne.html">Épargne</a>
-        <a href="pret.html">Prêt</a>
-        <a href="connexion.html">Connexion</a>
+
+      <!-- NAVIGATION -->
+
+      <nav class="home-nav">
+
+        <a href="index.html">
+          Accueil
+        </a>
+
+        <a href="epargne.html">
+          Épargne
+        </a>
+
+        <a href="pret.html">
+          Prêt
+        </a>
+
+        <a
+          id="homeConnexion"
+          href="connexion.html"
+        >
+          Connexion
+        </a>
+
       </nav>
 
+
+      <!-- PROFIL CONNECTÉ -->
+
+      <a
+        id="homeProfile"
+        class="home-profile"
+        href="compte.html"
+        aria-label="Mon compte"
+      >
+        👤
+      </a>
+
+
     </div>
+
   </header>
 
 
-  <!-- ================= HERO ================= -->
+
+  <!-- ==================================================
+       HERO
+       ================================================== -->
 
   <main>
 
-    <section class="hero">
 
-      <div class="container">
+    <section class="home-hero">
+
+      <div class="container home-hero-grid">
+
+
+        <!-- TEXTE -->
 
         <div>
 
-          <div class="badge badge-success mb-2">
+          <div class="home-badge">
             ÉPARGNE • PROJETS • PRÊTS
           </div>
 
+
           <h1>
+
             Épargnez aujourd’hui,
-            <span>réussissez demain.</span>
+
+            <span>
+              réussissez demain.
+            </span>
+
           </h1>
 
-          <p>
-            Mon Succès vous aide à mieux organiser votre épargne,
-            préparer vos projets et accéder à des solutions de prêt
-            dans une expérience simple et moderne.
+
+          <p class="home-hero-text">
+
+            MON SUCCÈS vous aide à mieux organiser
+            votre épargne, préparer vos projets et
+            accéder à des solutions de prêt dans
+            une expérience simple, claire et moderne.
+
           </p>
 
-          <div style="display:flex; gap:12px; flex-wrap:wrap;">
 
-            <a href="inscription.html" class="btn">
+          <!-- ACTIONS POUR VISITEUR -->
+
+          <div
+            id="homeActions"
+            class="home-actions"
+          >
+
+            <a
+              href="inscription.html"
+              class="btn"
+            >
               Créer mon compte
             </a>
 
-            <a href="connexion.html" class="btn btn-outline">
+            <a
+              href="connexion.html"
+              class="btn btn-outline"
+            >
               Se connecter
             </a>
 
           </div>
 
+
         </div>
 
 
-        <!-- Carte visuelle -->
 
-        <div class="hero-card">
+        <!-- CARTE VISUELLE -->
 
-          <div class="icon">
+        <div class="home-visual">
+
+          <div class="home-visual-icon">
             💰
           </div>
 
-          <h3>
+          <h2>
             Votre avenir commence ici
-          </h3>
+          </h2>
 
           <p>
-            Suivez votre épargne, visualisez vos objectifs
-            et préparez progressivement vos projets.
+
+            Construisez progressivement vos projets
+            grâce à une meilleure organisation de votre
+            épargne et de vos besoins de financement.
+
           </p>
 
-          <div class="stats">
 
-            <div class="stat">
-              <small>Épargne</small>
-              <strong>✓</strong>
+          <div class="home-mini-stats">
+
+            <div class="home-mini-stat">
+
+              <strong>
+                ✓
+              </strong>
+
+              <small>
+                Épargne
+              </small>
+
             </div>
 
-            <div class="stat">
-              <small>Projets</small>
-              <strong>✓</strong>
+
+            <div class="home-mini-stat">
+
+              <strong>
+                ✓
+              </strong>
+
+              <small>
+                Projets
+              </small>
+
             </div>
 
-            <div class="stat">
-              <small>Prêts</small>
-              <strong>✓</strong>
+
+            <div class="home-mini-stat">
+
+              <strong>
+                ✓
+              </strong>
+
+              <small>
+                Prêts
+              </small>
+
             </div>
 
           </div>
 
         </div>
+
 
       </div>
 
     </section>
 
 
-    <!-- ================= SERVICES ================= -->
 
-    <section>
+    <!-- ==================================================
+         SERVICES
+         ================================================== -->
+
+    <section class="home-services">
 
       <div class="container">
+
 
         <div class="section-title">
 
@@ -132,11 +265,14 @@
           </h2>
 
           <p>
-            Une plateforme conçue pour vous aider à construire
-            progressivement vos projets financiers.
+
+            Une plateforme simple pour vous accompagner
+            dans vos objectifs.
+
           </p>
 
         </div>
+
 
 
         <div class="cards">
@@ -144,7 +280,7 @@
 
           <!-- ÉPARGNE -->
 
-          <div class="card">
+          <div class="card home-service-card">
 
             <div class="icon">
               🏦
@@ -155,22 +291,28 @@
             </h3>
 
             <p>
+
               Mettez de l'argent de côté régulièrement
-              et suivez facilement votre progression.
+              et suivez votre progression.
+
             </p>
 
             <br>
 
-            <a href="epargne.html" class="btn btn-outline">
-              Voir mon épargne
+            <a
+              href="epargne.html"
+              class="btn btn-outline"
+            >
+              Mon épargne
             </a>
 
           </div>
 
 
+
           <!-- PROJETS -->
 
-          <div class="card">
+          <div class="card home-service-card">
 
             <div class="icon">
               🎯
@@ -181,16 +323,19 @@
             </h3>
 
             <p>
-              Fixez vos objectifs et construisez votre
-              épargne étape par étape pour les atteindre.
+
+              Préparez vos objectifs et avancez
+              étape par étape.
+
             </p>
 
           </div>
 
 
+
           <!-- PRÊTS -->
 
-          <div class="card">
+          <div class="card home-service-card">
 
             <div class="icon">
               🤝
@@ -201,100 +346,23 @@
             </h3>
 
             <p>
-              Découvrez les possibilités de financement
-              proposées par votre plateforme.
+
+              Découvrez les solutions de financement
+              disponibles sur MON SUCCÈS.
+
             </p>
 
             <br>
 
-            <a href="pret.html" class="btn btn-outline">
+            <a
+              href="pret.html"
+              class="btn btn-outline"
+            >
               Découvrir les prêts
             </a>
 
           </div>
 
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ================= COMMENT ÇA MARCHE ================= -->
-
-    <section style="background:#ffffff;">
-
-      <div class="container">
-
-        <div class="section-title">
-
-          <h2>
-            Comment ça marche ?
-          </h2>
-
-          <p>
-            Commencez simplement en quelques étapes.
-          </p>
-
-        </div>
-
-
-        <div class="cards">
-
-
-          <div class="card text-center">
-
-            <div class="icon" style="margin-left:auto;margin-right:auto;">
-              1
-            </div>
-
-            <h3>
-              Créez votre compte
-            </h3>
-
-            <p>
-              Inscrivez-vous gratuitement pour accéder
-              à votre espace personnel.
-            </p>
-
-          </div>
-
-
-          <div class="card text-center">
-
-            <div class="icon" style="margin-left:auto;margin-right:auto;">
-              2
-            </div>
-
-            <h3>
-              Épargnez
-            </h3>
-
-            <p>
-              Définissez vos objectifs et suivez
-              l'évolution de votre épargne.
-            </p>
-
-          </div>
-
-
-          <div class="card text-center">
-
-            <div class="icon" style="margin-left:auto;margin-right:auto;">
-              3
-            </div>
-
-            <h3>
-              Préparez vos projets
-            </h3>
-
-            <p>
-              Utilisez votre espace pour mieux planifier
-              vos projets futurs.
-            </p>
-
-          </div>
-
 
         </div>
 
@@ -303,82 +371,25 @@
     </section>
 
 
-    <!-- ================= POURQUOI MON SUCCÈS ================= -->
+
+    <!-- ==================================================
+         CTA
+         ================================================== -->
 
     <section>
 
       <div class="container">
 
-        <div class="section-title">
+        <div class="cta home-cta">
 
           <h2>
-            Pourquoi choisir Mon Succès ?
+            Votre projet commence aujourd'hui.
           </h2>
 
           <p>
-            Une expérience simple, claire et pensée
-            pour vous accompagner au quotidien.
+            MON SUCCÈS vous accompagne pour épargner,
+            préparer vos projets et avancer sereinement.
           </p>
-
-        </div>
-
-
-        <div class="cards">
-
-
-          <div class="card">
-
-            <div class="icon">
-              📱
-            </div>
-
-            <h3>
-              Simple sur mobile
-            </h3>
-
-            <p>
-              Accédez facilement à votre espace depuis
-              votre téléphone.
-            </p>
-
-          </div>
-
-
-          <div class="card">
-
-            <div class="icon">
-              🔐
-            </div>
-
-            <h3>
-              Votre espace personnel
-            </h3>
-
-            <p>
-              Retrouvez vos informations et votre
-              épargne dans un espace dédié.
-            </p>
-
-          </div>
-
-
-          <div class="card">
-
-            <div class="icon">
-              📊
-            </div>
-
-            <h3>
-              Suivi clair
-            </h3>
-
-            <p>
-              Visualisez votre progression et gardez
-              une meilleure maîtrise de vos objectifs.
-            </p>
-
-          </div>
-
 
         </div>
 
@@ -386,38 +397,14 @@
 
     </section>
 
-
-    <!-- ================= CTA ================= -->
-
-    <section>
-
-      <div class="container">
-
-        <div class="cta">
-
-          <h2>
-            Prêt à commencer ?
-          </h2>
-
-          <p>
-            Créez votre compte et commencez dès maintenant
-            à construire votre avenir avec Mon Succès.
-          </p>
-
-          <a href="inscription.html" class="btn btn-secondary">
-            Créer mon compte
-          </a>
-
-        </div>
-
-      </div>
-
-    </section>
 
   </main>
 
 
-  <!-- ================= FOOTER ================= -->
+
+  <!-- ==================================================
+       FOOTER
+       ================================================== -->
 
   <footer>
 
@@ -430,7 +417,7 @@
         </h3>
 
         <p>
-          Épargner. Préparer. Réussir.
+          Épargner. Partager. Réussir.
         </p>
 
       </div>
@@ -443,10 +430,21 @@
         </h3>
 
         <p>
-          <a href="index.html">Accueil</a><br>
-          <a href="epargne.html">Épargne</a><br>
-          <a href="pret.html">Prêt</a><br>
-          <a href="connexion.html">Connexion</a>
+
+          <a href="index.html">
+            Accueil
+          </a>
+          <br>
+
+          <a href="epargne.html">
+            Épargne
+          </a>
+          <br>
+
+          <a href="pret.html">
+            Prêt
+          </a>
+
         </p>
 
       </div>
@@ -454,15 +452,26 @@
 
       <div class="footer-bottom">
 
-        © 2026 Mon Succès — Tous droits réservés.
+        © 2026 MON SUCCÈS — Tous droits réservés.
 
       </div>
 
     </div>
 
   </footer>
-  
-<script type="module" src="js/app.js?v=1"></script>
+
+
+
+  <!-- ==================================================
+       JAVASCRIPT
+       ================================================== -->
+
+  <script
+    type="module"
+    src="js/app.js?v=2"
+  ></script>
+
 
 </body>
-  </html>
+
+          </html>
