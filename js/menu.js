@@ -75,11 +75,43 @@ if (!header) {
 
   style.textContent = `
 
-    header .container {
-  position: relative;
+/* ========================================
+   HEADER + BOUTON MENU
+======================================== */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
+header .container {
+  position: relative !important;
+
+  display: flex !important;
+  flex-direction: row !important;
+
+  align-items: center !important;
+  justify-content: space-between !important;
+
+  min-height: 72px !important;
+
+  padding-right: 80px !important;
+}
+
+
+/* ========================================
+   BOUTON MENU
+======================================== */
+
 #menuButton {
+
+  position: absolute !important;
+
+  top: 50% !important;
+  right: 0 !important;
+
+  transform: translateY(-50%) !important;
 
   width: 58px;
   height: 58px;
@@ -102,242 +134,274 @@ if (!header) {
   box-shadow:
     0 6px 18px rgba(0,0,0,0.15);
 
-  transition: 0.2s ease;
-
-  /* POSITION FIXE EN HAUT À DROITE */
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
 
   z-index: 1001;
 }
 
+
 #menuButton:hover {
+
   background: #064936;
+
 }
+
 
 #menuButton:active {
-  transform: translateY(-50%) scale(0.96);
+
+  transform:
+    translateY(-50%)
+    scale(0.96);
+
 }
 
-    #menuButton:hover {
-      background: #064936;
-      transform: translateY(-2px);
-    }
 
+/* ========================================
+   PANNEAU DU MENU
+======================================== */
 
-    #menuPanel {
+#menuPanel {
 
-      position: fixed;
+  position: fixed;
 
-      top: 90px;
-      right: 20px;
+  top: 90px;
+  right: 20px;
 
-      width: 280px;
+  width: 280px;
 
-      background: white;
+  background: white;
 
-      border: 1px solid #e2e9e6;
-      border-radius: 20px;
+  border: 1px solid #e2e9e6;
+  border-radius: 20px;
 
-      padding: 18px;
+  padding: 18px;
 
-      box-shadow:
-        0 15px 45px rgba(0,0,0,0.18);
+  box-shadow:
+    0 15px 45px rgba(0,0,0,0.18);
 
-      z-index: 9998;
+  z-index: 9998;
 
-      display: none;
+  display: none;
 
-      animation: menuFade 0.2s ease;
-    }
+  animation: menuFade 0.2s ease;
+}
 
 
-    #menuPanel.active {
-      display: block;
-    }
+#menuPanel.active {
 
+  display: block;
 
-    .menu-header {
+}
 
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
 
-      padding-bottom: 14px;
+/* ========================================
+   EN-TÊTE DU MENU
+======================================== */
 
-      border-bottom: 1px solid #e2e9e6;
+.menu-header {
 
-      margin-bottom: 10px;
-    }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
+  padding-bottom: 14px;
 
-    .menu-header strong {
+  border-bottom: 1px solid #e2e9e6;
 
-      color: #064936;
+  margin-bottom: 10px;
+}
 
-      font-size: 20px;
-    }
 
+.menu-header strong {
 
-    #menuClose {
+  color: #064936;
 
-      width: 35px;
-      height: 35px;
+  font-size: 20px;
 
-      border: none;
-      border-radius: 50%;
+}
 
-      background: #f5f8f7;
 
-      color: #555;
+#menuClose {
 
-      font-size: 24px;
+  width: 35px;
+  height: 35px;
 
-      cursor: pointer;
-    }
+  border: none;
+  border-radius: 50%;
 
+  background: #f5f8f7;
 
-    #menuLinks {
+  color: #555;
 
-      display: flex;
-      flex-direction: column;
+  font-size: 24px;
 
-      gap: 5px;
-    }
+  cursor: pointer;
 
+}
 
-    #menuLinks a,
-    #menuLinks button {
 
-      width: 100%;
+/* ========================================
+   LIENS DU MENU
+======================================== */
 
-      padding: 14px 15px;
+#menuLinks {
 
-      border: none;
-      border-radius: 12px;
+  display: flex;
 
-      background: transparent;
+  flex-direction: column;
 
-      color: #45534d;
+  gap: 5px;
 
-      text-align: left;
+}
 
-      font-size: 16px;
-      font-weight: 600;
 
-      cursor: pointer;
+#menuLinks a,
+#menuLinks button {
 
-      text-decoration: none;
+  width: 100%;
 
-      transition: 0.2s ease;
-    }
+  padding: 14px 15px;
 
+  border: none;
+  border-radius: 12px;
 
-    #menuLinks a:hover,
-    #menuLinks button:hover {
+  background: transparent;
 
-      background: #e8f5f0;
+  color: #45534d;
 
-      color: #0b6b4f;
-    }
+  text-align: left;
 
+  font-size: 16px;
+  font-weight: 600;
 
-    #menuLinks .logout {
+  cursor: pointer;
 
-      margin-top: 8px;
+  text-decoration: none;
 
-      color: #c74646;
+  transition: 0.2s ease;
+}
 
-      border-top: 1px solid #e2e9e6;
 
-      border-radius: 0;
+#menuLinks a:hover,
+#menuLinks button:hover {
 
-      padding-top: 16px;
-    }
+  background: #e8f5f0;
 
+  color: #0b6b4f;
 
-    #menuLinks .logout:hover {
+}
 
-      background: #fff0f0;
 
-      color: #a53333;
-    }
+/* ========================================
+   DÉCONNEXION
+======================================== */
 
+#menuLinks .logout {
 
-    @keyframes menuFade {
+  margin-top: 8px;
 
-      from {
-        opacity: 0;
-        transform: translateY(-8px);
-      }
+  color: #c74646;
 
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+  border-top: 1px solid #e2e9e6;
 
+  border-radius: 0;
 
-    @media (max-width: 650px) {
+  padding-top: 16px;
+
+}
+
+
+#menuLinks .logout:hover {
+
+  background: #fff0f0;
+
+  color: #a53333;
+
+}
+
+
+/* ========================================
+   ANIMATION
+======================================== */
+
+@keyframes menuFade {
+
+  from {
+
+    opacity: 0;
+
+    transform: translateY(-8px);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform: translateY(0);
+
+  }
+
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 650px) {
 
   header .container {
-    position: relative;
-    padding-right: 75px;
+
+    display: flex !important;
+
+    flex-direction: row !important;
+
+    align-items: center !important;
+
+    justify-content: space-between !important;
+
+    min-height: 72px !important;
+
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+
+    padding-right: 75px !important;
+
   }
 
+
   #menuButton {
-    right: 0;
+
+    width: 58px;
+    height: 58px;
+
+    right: 0 !important;
+
+    top: 50% !important;
+
+    transform: translateY(-50%) !important;
+
   }
+
 
   #menuPanel {
 
     top: 85px;
+
     right: 15px;
+
     left: 15px;
 
     width: auto;
+
   }
 
 }
 
-  `;
-
-  document.head.appendChild(style);
-
-
-  // ========================================
-  // CONSTRUIRE LE MENU
-  // ========================================
-
-  async function buildMenu() {
-
-    const {
-      data: { user }
-    } = await supabase.auth.getUser();
-
-
-    const links = document.getElementById("menuLinks");
-
-    if (!links) return;
-
-
-    let menu = `
-
-      <a href="epargne.html">
-        🏦 Épargne
-      </a>
-
-      <a href="pret.html">
-        🤝 Prêt
-      </a>
-
-      <a href="index.html#projets">
-        🎯 Projets
-      </a>
-
-    `;
+`;
 
 
     // ========================================
