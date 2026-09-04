@@ -361,22 +361,28 @@ header .container {
 
   header .container {
 
-    display: flex !important;
+  width: 100% !important;
+  max-width: none !important;
 
-    flex-direction: row !important;
+  margin: 0 !important;
 
-    align-items: center !important;
+  display: flex !important;
 
-    justify-content: space-between !important;
+  flex-direction: row !important;
 
-    min-height: 72px !important;
+  align-items: center !important;
 
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
+  justify-content: space-between !important;
 
-    padding-right: 75px !important;
+  min-height: 72px !important;
 
-  }
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+
+  padding-left: 20px !important;
+  padding-right: 75px !important;
+
+}
 
 
   #menuButton {
