@@ -63,51 +63,8 @@ async function loadAccount() {
 
     return;
   }
-
-  /* Notification */
-
-const accepte = data.filter(
-  (pret) =>
-    pret.statut === "accepte" &&
-    pret.notification_lue === false
-);
-
-const refuse = data.filter(
-  (pret) =>
-    pret.statut === "refuse" &&
-    pret.notification_lue === false
-);
-
-let notification = "";
-
-if (accepte.length > 0) {
-  notification += `
-    <div class="card">
-      <h3>🔔 Bonne nouvelle !</h3>
-      <p>
-        Votre demande de prêt a été
-        <strong>✅ acceptée</strong>.
-      </p>
-    </div>
-  `;
-}
-
-if (refuse.length > 0) {
-  notification += `
-    <div class="card">
-      <h3>🔔 Notification</h3>
-      <p>
-        Une demande de prêt a été
-        <strong>❌ refusée</strong>.
-      </p>
-    </div>
-  `;
-}
-
-  loans.innerHTML = notification;
-
-  loans.innerHTML += data.map((pret) => {
-
+loans.innerHTML = data.map((pret) => {
+  
     let statut = "⏳ En attente";
 
     if (pret.statut === "accepte") {
