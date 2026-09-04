@@ -1,4 +1,5 @@
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
 import {
   SUPABASE_URL,
   SUPABASE_ANON_KEY
@@ -17,6 +18,7 @@ const money = (amount) =>
   new Intl.NumberFormat("fr-FR").format(amount) + " FCFA";
 
 async function loadAccount() {
+
   const {
     data: { user },
     error: userError
@@ -28,6 +30,7 @@ async function loadAccount() {
   }
 
   if (!user) {
+
     accountInfo.innerHTML = `
       <p>Vous devez être connecté pour accéder à votre compte.</p>
       <a href="connexion.html">Se connecter</a>
@@ -53,13 +56,53 @@ async function loadAccount() {
   }
 
   if (!data || data.length === 0) {
+
     loans.innerHTML = `
       <p>Aucune demande de prêt pour le moment.</p>
     `;
+
     return;
   }
 
-  loans.innerHTML = data.map((pret) => {
+  /* Notification */
+
+  const accepte = data.filter(
+    (pret) => pret.statut === "accepte"
+  );
+
+  const refuse = data.filter(
+    (pret) => pret.statut === "refuse"
+  );
+
+  let notification = "";
+
+  if (accepte.length > 0) {
+    notification += `
+      <div class="card">
+        <h3>🔔 Bonne nouvelle !</h3>
+        <p>
+          Votre demande de prêt a été
+          <strong>✅ acceptée</strong>.
+        </p>
+      </div>
+    `;
+  }
+
+  if (refuse.length > 0) {
+    notification += `
+      <div class="card">
+        <h3>🔔 Notification</h3>
+        <p>
+          Une demande de prêt a été
+          <strong>❌ refusée</strong>.
+        </p>
+      </div>
+    `;
+  }
+
+  loans.innerHTML = notification;
+
+  loans.innerHTML += data.map((pret) => {
 
     let statut = "⏳ En attente";
 
@@ -73,6 +116,7 @@ async function loadAccount() {
 
     return `
       <div class="loan-item">
+
         <p>
           <strong>Montant :</strong>
           ${money(pret.montant)}
@@ -98,10 +142,12 @@ async function loadAccount() {
             ${new Date(pret.created_at).toLocaleString("fr-FR")}
           </small>
         </p>
+
       </div>
 
       <hr>
     `;
+
   }).join("");
 }
 
