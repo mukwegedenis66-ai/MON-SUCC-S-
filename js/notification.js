@@ -57,24 +57,18 @@ style.textContent = `
   font-family: Arial, sans-serif;
 }
 
-/* BOUTON */
-
 #notificationButton {
   width: 58px;
   height: 58px;
-
   border: none;
   border-radius: 50%;
-
   background: #ffffff;
 
   box-shadow:
     0 3px 12px rgba(0,0,0,0.25);
 
   font-size: 27px;
-
   cursor: pointer;
-
   position: relative;
 
   transition: transform 0.2s ease;
@@ -84,10 +78,7 @@ style.textContent = `
   transform: scale(1.05);
 }
 
-/* COMPTEUR */
-
 #notificationCount {
-
   position: absolute;
 
   top: -5px;
@@ -101,22 +92,17 @@ style.textContent = `
   border-radius: 50%;
 
   background: #e53935;
-
   color: white;
 
   font-size: 13px;
   font-weight: bold;
 
   display: flex;
-
   align-items: center;
   justify-content: center;
 }
 
-/* PANNEAU */
-
 #notificationPanel {
-
   display: none;
 
   position: absolute;
@@ -125,7 +111,6 @@ style.textContent = `
   bottom: 70px;
 
   width: 300px;
-
   max-height: 400px;
 
   overflow-y: auto;
@@ -140,93 +125,63 @@ style.textContent = `
     0 5px 20px rgba(0,0,0,0.25);
 }
 
-/* EN-TÊTE */
-
 .notification-header {
-
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
 
   margin-bottom: 15px;
 }
 
 .notification-header h3 {
-
   margin: 0;
-
   font-size: 18px;
 }
 
 #closeNotification {
-
   border: none;
-
   background: transparent;
 
   font-size: 25px;
 
   cursor: pointer;
-
   color: #777;
 }
 
-/* NOTIFICATION */
-
 .notification-item {
-
   padding: 13px 0;
-
   border-bottom: 1px solid #ddd;
 }
 
 .notification-item:last-child {
-
   border-bottom: none;
 }
 
 .notification-item strong {
-
   display: block;
-
   line-height: 1.4;
 }
 
 .notification-item p {
-
   margin: 7px 0;
-
   font-size: 15px;
 }
 
 .notification-item small {
-
   color: #777;
-
   font-size: 12px;
 }
 
-/* VIDE */
-
 .notification-empty {
-
   color: #777;
-
   text-align: center;
-
   padding: 20px 5px;
 }
-
-/* MOBILE */
 
 @media (max-width: 480px) {
 
   #notificationPanel {
-
     width: 260px;
-
     left: 0;
   }
 
@@ -258,38 +213,6 @@ const content =
 
 
 // ========================================
-// OUVRIR / FERMER
-// ========================================
-
-button.addEventListener("click", () => {
-
-  if (panel.style.display === "block") {
-
-    panel.style.display = "none";
-
-  } else {
-
-    panel.style.display = "block";
-
-    loadNotifications();
-
-  }
-
-});
-
-
-// ========================================
-// BOUTON FERMER
-// ========================================
-
-closeButton.addEventListener("click", () => {
-
-  panel.style.display = "none";
-
-});
-
-
-// ========================================
 // CHARGER LES NOTIFICATIONS
 // ========================================
 
@@ -299,7 +222,6 @@ async function loadNotifications() {
     data: { user },
     error: userError
   } = await supabase.auth.getUser();
-
 
   // ========================================
   // PAS CONNECTÉ
@@ -320,7 +242,8 @@ async function loadNotifications() {
 
 
   // ========================================
-  // RÉCUPÉRER LES DEMANDES TRAITÉES
+  // RÉCUPÉRER UNIQUEMENT LES NOTIFICATIONS
+  // NON LUES
   // ========================================
 
   const {
@@ -334,7 +257,8 @@ async function loadNotifications() {
       id,
       montant,
       statut,
-      created_at
+      created_at,
+      notification_lue
     `)
 
     .eq("user_id", user.id)
@@ -343,6 +267,8 @@ async function loadNotifications() {
       "accepte",
       "refuse"
     ])
+
+    .eq("notification_lue", false)
 
     .order("created_at", {
       ascending: false
@@ -380,7 +306,7 @@ async function loadNotifications() {
 
 
   // ========================================
-  // AUCUNE NOTIFICATION
+  // AUCUNE NOUVELLE NOTIFICATION
   // ========================================
 
   if (data.length === 0) {
@@ -405,10 +331,8 @@ async function loadNotifications() {
       new Intl.NumberFormat("fr-FR")
         .format(pret.montant);
 
-
     let message;
     let emoji;
-
 
     if (pret.statut === "accepte") {
 
@@ -423,14 +347,11 @@ async function loadNotifications() {
 
       message =
         "Votre demande de prêt a été refusée.";
-
     }
-
 
     const date =
       new Date(pret.created_at)
         .toLocaleString("fr-FR");
-
 
     return `
 
@@ -456,8 +377,92 @@ async function loadNotifications() {
     `;
 
   }).join("");
-
 }
+
+
+// ========================================
+// MARQUER LES NOTIFICATIONS COMME LUES
+// ========================================
+
+async function markNotificationsAsRead() {
+
+  const {
+    data: { user },
+    error: userError
+  } = await supabase.auth.getUser();
+
+  if (userError || !user) {
+    return;
+  }
+
+  const { error } = await supabase
+
+    .from("prets")
+
+    .update({
+      notification_lue: true
+    })
+
+    .eq("user_id", user.id)
+
+    .in("statut", [
+      "accepte",
+      "refuse"
+    ])
+
+    .eq("notification_lue", false);
+
+  if (error) {
+
+    console.error(
+      "Erreur lors du marquage des notifications :",
+      error
+    );
+
+    return;
+  }
+
+  // Le compteur passe immédiatement à 0
+  count.textContent = "0";
+}
+
+
+// ========================================
+// OUVRIR / FERMER
+// ========================================
+
+button.addEventListener("click", async () => {
+
+  if (panel.style.display === "block") {
+
+    panel.style.display = "none";
+
+    return;
+  }
+
+  panel.style.display = "block";
+
+  // Charger les notifications
+  await loadNotifications();
+
+  // Les considérer comme lues
+  await markNotificationsAsRead();
+
+  // Recharger pour vider le panneau
+  await loadNotifications();
+
+});
+
+
+// ========================================
+// BOUTON FERMER
+// ========================================
+
+closeButton.addEventListener("click", () => {
+
+  panel.style.display = "none";
+
+});
 
 
 // ========================================
