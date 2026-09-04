@@ -946,3 +946,327 @@ footer p {
 .loan-card {
   animation: fadeIn 0.45s ease both;
   }
+/* =========================================================
+   PAGE D'ACCUEIL — MON SUCCÈS
+   ========================================================= */
+
+.home-header {
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid var(--border);
+}
+
+.home-header .container {
+  min-height: 86px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.home-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.home-brand-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--primary-light);
+  font-size: 32px;
+}
+
+.home-brand-text strong {
+  display: block;
+  color: var(--primary);
+  font-size: 1.45rem;
+  font-weight: 850;
+  line-height: 1.1;
+}
+
+.home-brand-text span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin-top: 3px;
+}
+
+.home-nav {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.home-nav a {
+  padding: 10px 13px;
+  border-radius: 10px;
+  color: #45534d;
+  font-weight: 650;
+  transition: 0.2s ease;
+}
+
+.home-nav a:hover {
+  color: var(--primary);
+  background: var(--primary-light);
+}
+
+
+/* PROFIL */
+
+.home-profile {
+  width: 48px;
+  height: 48px;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: var(--primary-light);
+  color: var(--primary);
+
+  font-size: 26px;
+  border: 2px solid #d8eee6;
+
+  transition: 0.2s ease;
+}
+
+.home-profile:hover {
+  transform: scale(1.06);
+  background: #dcefe8;
+}
+
+
+/* HERO MODERNE */
+
+.home-hero {
+  padding: 75px 0 65px;
+
+  background:
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(217, 164, 65, 0.18),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #edf9f4 0%,
+      #ffffff 60%,
+      #fffaf0 100%
+    );
+}
+
+.home-hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 55px;
+  align-items: center;
+}
+
+.home-badge {
+  display: inline-flex;
+  padding: 8px 14px;
+  border-radius: 30px;
+
+  background: #e4f6ef;
+  color: var(--primary);
+
+  font-size: 0.82rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.home-hero h1 {
+  color: var(--primary-dark);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1.02;
+  letter-spacing: -2.5px;
+  margin-bottom: 24px;
+}
+
+.home-hero h1 span {
+  color: var(--secondary-dark);
+}
+
+.home-hero-text {
+  max-width: 650px;
+  color: var(--muted);
+  font-size: 1.08rem;
+  margin-bottom: 30px;
+}
+
+.home-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+
+/* CARTE HERO */
+
+.home-visual {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  padding: 32px;
+
+  box-shadow: var(--shadow-lg);
+}
+
+.home-visual-icon {
+  width: 76px;
+  height: 76px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 24px;
+
+  background: var(--primary-light);
+
+  font-size: 42px;
+  margin-bottom: 22px;
+}
+
+.home-visual h2 {
+  color: var(--primary-dark);
+  font-size: 1.55rem;
+  margin-bottom: 10px;
+}
+
+.home-visual p {
+  color: var(--muted);
+  margin-bottom: 25px;
+}
+
+.home-mini-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.home-mini-stat {
+  padding: 14px 10px;
+  text-align: center;
+
+  background: var(--background);
+  border-radius: 14px;
+}
+
+.home-mini-stat strong {
+  display: block;
+  color: var(--primary);
+  font-size: 1.3rem;
+}
+
+.home-mini-stat small {
+  color: var(--muted);
+}
+
+
+/* SERVICES */
+
+.home-services {
+  padding: 75px 0;
+  background: #fff;
+}
+
+.home-service-card {
+  text-align: center;
+  padding: 30px 24px;
+}
+
+.home-service-card .icon {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.home-service-card h3 {
+  font-size: 1.25rem;
+}
+
+
+/* CTA */
+
+.home-cta {
+  margin-top: 20px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+
+  .home-header .container {
+    min-height: 78px;
+  }
+
+  .home-nav {
+    display: none;
+  }
+
+  .home-hero {
+    padding: 55px 0;
+  }
+
+  .home-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .home-hero h1 {
+    font-size: 2.8rem;
+  }
+
+  .home-visual {
+    padding: 25px;
+  }
+
+  .home-mini-stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  .home-brand-icon {
+    width: 52px;
+    height: 52px;
+    font-size: 28px;
+  }
+
+  .home-brand-text strong {
+    font-size: 1.25rem;
+  }
+
+  .home-brand-text span {
+    font-size: 0.78rem;
+  }
+
+  .home-profile {
+    width: 45px;
+    height: 45px;
+  }
+
+  .home-hero h1 {
+    font-size: 2.55rem;
+  }
+
+  .home-hero-text {
+    font-size: 1rem;
+  }
+
+  .home-actions .btn {
+    width: 100%;
+  }
+
+   }
