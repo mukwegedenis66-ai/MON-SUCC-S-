@@ -25,11 +25,16 @@ notificationBox.innerHTML = `
   </button>
 
   <div id="notificationPanel">
-    <h3>🔔 Notifications</h3>
+
+    <div class="notification-header">
+      <h3>🔔 Notifications</h3>
+      <button id="closeNotification" type="button">×</button>
+    </div>
 
     <div id="notificationContent">
       Chargement...
     </div>
+
   </div>
 `;
 
@@ -43,6 +48,7 @@ document.body.appendChild(notificationBox);
 const style = document.createElement("style");
 
 style.textContent = `
+
 #notificationBox {
   position: fixed;
   left: 15px;
@@ -51,86 +57,181 @@ style.textContent = `
   font-family: Arial, sans-serif;
 }
 
+/* BOUTON */
+
 #notificationButton {
   width: 58px;
   height: 58px;
+
   border: none;
   border-radius: 50%;
+
   background: #ffffff;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.25);
+
+  box-shadow:
+    0 3px 12px rgba(0,0,0,0.25);
+
   font-size: 27px;
+
   cursor: pointer;
+
   position: relative;
+
+  transition: transform 0.2s ease;
 }
 
 #notificationButton:hover {
   transform: scale(1.05);
 }
 
+/* COMPTEUR */
+
 #notificationCount {
+
   position: absolute;
+
   top: -5px;
   right: -5px;
+
   min-width: 22px;
   height: 22px;
+
   padding: 0 5px;
+
   border-radius: 50%;
+
   background: #e53935;
+
   color: white;
+
   font-size: 13px;
   font-weight: bold;
+
   display: flex;
+
   align-items: center;
   justify-content: center;
 }
 
+/* PANNEAU */
+
 #notificationPanel {
+
   display: none;
+
   position: absolute;
+
   left: 0;
   bottom: 70px;
-  width: 280px;
-  max-height: 380px;
+
+  width: 300px;
+
+  max-height: 400px;
+
   overflow-y: auto;
+
   background: white;
+
   border-radius: 15px;
+
   padding: 18px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+
+  box-shadow:
+    0 5px 20px rgba(0,0,0,0.25);
 }
 
-#notificationPanel h3 {
-  margin-top: 0;
+/* EN-TÊTE */
+
+.notification-header {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
   margin-bottom: 15px;
 }
 
+.notification-header h3 {
+
+  margin: 0;
+
+  font-size: 18px;
+}
+
+#closeNotification {
+
+  border: none;
+
+  background: transparent;
+
+  font-size: 25px;
+
+  cursor: pointer;
+
+  color: #777;
+}
+
+/* NOTIFICATION */
+
 .notification-item {
-  padding: 12px 0;
+
+  padding: 13px 0;
+
   border-bottom: 1px solid #ddd;
 }
 
 .notification-item:last-child {
+
   border-bottom: none;
 }
 
+.notification-item strong {
+
+  display: block;
+
+  line-height: 1.4;
+}
+
 .notification-item p {
-  margin: 6px 0;
+
+  margin: 7px 0;
+
+  font-size: 15px;
 }
 
 .notification-item small {
+
   color: #777;
+
+  font-size: 12px;
 }
+
+/* VIDE */
 
 .notification-empty {
+
   color: #777;
+
   text-align: center;
-  padding: 15px 0;
+
+  padding: 20px 5px;
 }
 
+/* MOBILE */
+
 @media (max-width: 480px) {
+
   #notificationPanel {
+
     width: 260px;
+
+    left: 0;
   }
+
 }
+
 `;
 
 document.head.appendChild(style);
@@ -140,23 +241,50 @@ document.head.appendChild(style);
 // ÉLÉMENTS
 // ========================================
 
-const button = document.getElementById("notificationButton");
-const panel = document.getElementById("notificationPanel");
-const count = document.getElementById("notificationCount");
-const content = document.getElementById("notificationContent");
+const button =
+  document.getElementById("notificationButton");
+
+const panel =
+  document.getElementById("notificationPanel");
+
+const closeButton =
+  document.getElementById("closeNotification");
+
+const count =
+  document.getElementById("notificationCount");
+
+const content =
+  document.getElementById("notificationContent");
 
 
 // ========================================
-// OUVRIR / FERMER LES NOTIFICATIONS
+// OUVRIR / FERMER
 // ========================================
 
 button.addEventListener("click", () => {
 
-  if (panel.style.display === "none" || panel.style.display === "") {
-    panel.style.display = "block";
-  } else {
+  if (panel.style.display === "block") {
+
     panel.style.display = "none";
+
+  } else {
+
+    panel.style.display = "block";
+
+    loadNotifications();
+
   }
+
+});
+
+
+// ========================================
+// BOUTON FERMER
+// ========================================
+
+closeButton.addEventListener("click", () => {
+
+  panel.style.display = "none";
 
 });
 
@@ -168,15 +296,16 @@ button.addEventListener("click", () => {
 async function loadNotifications() {
 
   const {
-    data: { user }
+    data: { user },
+    error: userError
   } = await supabase.auth.getUser();
 
 
-  // ----------------------------------------
-  // UTILISATEUR NON CONNECTÉ
-  // ----------------------------------------
+  // ========================================
+  // PAS CONNECTÉ
+  // ========================================
 
-  if (!user) {
+  if (userError || !user) {
 
     count.textContent = "0";
 
@@ -190,25 +319,46 @@ async function loadNotifications() {
   }
 
 
-  // ----------------------------------------
+  // ========================================
   // RÉCUPÉRER LES DEMANDES TRAITÉES
-  // ----------------------------------------
+  // ========================================
 
-  const { data, error } = await supabase
+  const {
+    data,
+    error
+  } = await supabase
+
     .from("prets")
-    .select("id, montant, statut, created_at")
+
+    .select(`
+      id,
+      montant,
+      statut,
+      created_at
+    `)
+
     .eq("user_id", user.id)
-    .in("statut", ["accepte", "refuse"])
-    .order("created_at", { ascending: false });
+
+    .in("statut", [
+      "accepte",
+      "refuse"
+    ])
+
+    .order("created_at", {
+      ascending: false
+    });
 
 
-  // ----------------------------------------
-  // ERREUR SUPABASE
-  // ----------------------------------------
+  // ========================================
+  // ERREUR
+  // ========================================
 
   if (error) {
 
-    console.error("Erreur notifications :", error);
+    console.error(
+      "Erreur notifications :",
+      error
+    );
 
     count.textContent = "0";
 
@@ -222,16 +372,16 @@ async function loadNotifications() {
   }
 
 
-  // ----------------------------------------
+  // ========================================
   // COMPTEUR
-  // ----------------------------------------
+  // ========================================
 
   count.textContent = data.length;
 
 
-  // ----------------------------------------
+  // ========================================
   // AUCUNE NOTIFICATION
-  // ----------------------------------------
+  // ========================================
 
   if (data.length === 0) {
 
@@ -245,40 +395,64 @@ async function loadNotifications() {
   }
 
 
-  // ----------------------------------------
+  // ========================================
   // AFFICHAGE
-  // ----------------------------------------
+  // ========================================
 
   content.innerHTML = data.map((pret) => {
 
-    const montant = new Intl.NumberFormat("fr-FR")
-      .format(pret.montant);
+    const montant =
+      new Intl.NumberFormat("fr-FR")
+        .format(pret.montant);
+
 
     let message;
+    let emoji;
+
 
     if (pret.statut === "accepte") {
 
-      message = "✅ Votre demande de prêt a été acceptée.";
+      emoji = "✅";
+
+      message =
+        "Votre demande de prêt a été acceptée.";
 
     } else {
 
-      message = "❌ Votre demande de prêt a été refusée.";
+      emoji = "❌";
+
+      message =
+        "Votre demande de prêt a été refusée.";
 
     }
 
-    const date = new Date(pret.created_at)
-      .toLocaleString("fr-FR");
+
+    const date =
+      new Date(pret.created_at)
+        .toLocaleString("fr-FR");
+
 
     return `
-      <div class="notification-item">
 
-        <strong>${message}</strong>
+      <div
+        class="notification-item"
+        data-id="${pret.id}"
+      >
 
-        <p>💰 ${montant} FCFA</p>
+        <strong>
+          ${emoji} ${message}
+        </strong>
 
-        <small>${date}</small>
+        <p>
+          💰 ${montant} FCFA
+        </p>
+
+        <small>
+          ${date}
+        </small>
 
       </div>
+
     `;
 
   }).join("");
@@ -287,7 +461,48 @@ async function loadNotifications() {
 
 
 // ========================================
-// LANCEMENT
+// ACTUALISATION AUTOMATIQUE
+// ========================================
+
+setInterval(() => {
+
+  loadNotifications();
+
+}, 10000);
+
+
+// ========================================
+// CHARGEMENT INITIAL
 // ========================================
 
 loadNotifications();
+
+
+// ========================================
+// TEMPS RÉEL SUPABASE
+// ========================================
+
+supabase
+
+  .channel("prets-notifications")
+
+  .on(
+    "postgres_changes",
+    {
+      event: "UPDATE",
+      schema: "public",
+      table: "prets"
+    },
+    (payload) => {
+
+      console.log(
+        "Statut de prêt modifié :",
+        payload.new
+      );
+
+      loadNotifications();
+
+    }
+  )
+
+  .subscribe();
