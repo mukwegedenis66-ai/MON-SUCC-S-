@@ -12,7 +12,7 @@ const supabase = createClient(
 
 
 // ========================================
-// VÉRIFIER LA CONNEXION
+// VÉRIFIER LA SESSION
 // ========================================
 
 const {
@@ -21,14 +21,17 @@ const {
 
 
 // ========================================
-// ÉLÉMENTS DE LA PAGE D'ACCUEIL
+// ÉLÉMENTS
 // ========================================
 
-const connexionLinks =
-  document.querySelectorAll('a[href="connexion.html"]');
+const homeProfile =
+  document.getElementById("homeProfile");
 
-const inscriptionLinks =
-  document.querySelectorAll('a[href="inscription.html"]');
+const homeConnexion =
+  document.getElementById("homeConnexion");
+
+const homeActions =
+  document.getElementById("homeActions");
 
 
 // ========================================
@@ -37,48 +40,25 @@ const inscriptionLinks =
 
 if (user) {
 
-  // ----------------------------------------
-  // MENU "CONNEXION" → "MON COMPTE"
-  // ----------------------------------------
+  // Afficher l'icône 👤
 
-  connexionLinks.forEach((link) => {
-
-    link.textContent = "Mon compte";
-
-    link.href = "compte.html";
-
-  });
+  if (homeProfile) {
+    homeProfile.style.display = "flex";
+  }
 
 
-  // ----------------------------------------
-  // BOUTONS D'INSCRIPTION
-  // ----------------------------------------
+  // Supprimer "Connexion"
 
-  inscriptionLinks.forEach((link) => {
-
-    const text =
-      link.textContent.trim().toLowerCase();
-
-    // Boutons "Créer mon compte"
-    if (text.includes("créer mon compte")) {
-
-      link.textContent = "Mon compte";
-
-      link.href = "compte.html";
-
-    }
-
-  });
+  if (homeConnexion) {
+    homeConnexion.style.display = "none";
+  }
 
 
-// ========================================
-// UTILISATEUR NON CONNECTÉ
-// ========================================
+  // Supprimer les boutons
+  // Créer mon compte / Se connecter
 
-} else {
-
-  // Rien à modifier.
-  // La page garde ses boutons
-  // "Créer mon compte" et "Se connecter".
+  if (homeActions) {
+    homeActions.style.display = "none";
+  }
 
 }
