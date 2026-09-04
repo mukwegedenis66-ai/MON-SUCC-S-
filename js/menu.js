@@ -75,31 +75,51 @@ if (!header) {
 
   style.textContent = `
 
-    #menuButton {
+    header .container {
+  position: relative;
+}
 
-      width: 58px;
-      height: 58px;
+#menuButton {
 
-      border: none;
-      border-radius: 18px;
+  width: 58px;
+  height: 58px;
 
-      background: #0b6b4f;
-      color: white;
+  border: none;
+  border-radius: 18px;
 
-      font-size: 32px;
-      line-height: 1;
+  background: #0b6b4f;
+  color: white;
 
-      cursor: pointer;
+  font-size: 32px;
+  line-height: 1;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+  cursor: pointer;
 
-      box-shadow:
-        0 6px 18px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-      transition: 0.2s ease;
-    }
+  box-shadow:
+    0 6px 18px rgba(0,0,0,0.15);
+
+  transition: 0.2s ease;
+
+  /* POSITION FIXE EN HAUT À DROITE */
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+
+  z-index: 1001;
+}
+
+#menuButton:hover {
+  background: #064936;
+}
+
+#menuButton:active {
+  transform: translateY(-50%) scale(0.96);
+}
 
     #menuButton:hover {
       background: #064936;
@@ -262,16 +282,25 @@ if (!header) {
 
     @media (max-width: 650px) {
 
-      #menuPanel {
+  header .container {
+    position: relative;
+    padding-right: 75px;
+  }
 
-        top: 85px;
-        right: 15px;
-        left: 15px;
+  #menuButton {
+    right: 0;
+  }
 
-        width: auto;
-      }
+  #menuPanel {
 
-    }
+    top: 85px;
+    right: 15px;
+    left: 15px;
+
+    width: auto;
+  }
+
+}
 
   `;
 
