@@ -1,281 +1,770 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
   <title>Connexion — MON SUCCÈS</title>
+
   <link rel="stylesheet" href="css/style.css">
 
+
   <style>
+
+    /* =====================================================
+       PAGE CONNEXION
+    ===================================================== */
+
     .auth-page {
+
       min-height: 100vh;
-      background: linear-gradient(135deg, #f3fff8, #ffffff, #eafff1);
+
+      background:
+        linear-gradient(
+          135deg,
+          #f3fff8,
+          #ffffff,
+          #eafff1
+        );
+
     }
+
+
+    /* =====================================================
+       HEADER
+    ===================================================== */
 
     .auth-header {
+
       background: #fff;
-      border-bottom: 1px solid #e5eee9;
+
+      border-bottom:
+        1px solid #e5eee9;
+
       padding: 14px 20px;
+
+      position: sticky;
+
+      top: 0;
+
+      z-index: 1000;
+
     }
 
-    .auth-brand {
-      max-width: 720px;
-      margin: auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+
+    /* =====================================================
+       BARRE DU HEADER
+    ===================================================== */
+
+    .auth-brand.container {
+
+      width: 100% !important;
+
+      max-width: none !important;
+
+      margin: 0 !important;
+
+      padding:
+        0 78px 0 0 !important;
+
+      position: relative !important;
+
+      display: flex !important;
+
+      flex-direction: row !important;
+
+      align-items: center !important;
+
+      justify-content: flex-start !important;
+
+      min-height: 58px !important;
+
+      gap: 0 !important;
+
     }
+
+
+    /* =====================================================
+       LOGO + NOM
+    ===================================================== */
 
     .brand-left {
+
       display: flex;
+
       align-items: center;
+
       gap: 12px;
+
     }
+
 
     .brand-logo {
-      width: 48px;
-      height: 48px;
+
+      width: 58px;
+
+      height: 58px;
+
+      flex-shrink: 0;
+
       border-radius: 16px;
+
       background: #e9f8ef;
+
       display: flex;
+
       align-items: center;
+
       justify-content: center;
-      font-size: 27px;
+
+      font-size: 32px;
+
     }
+
 
     .brand-name {
-      font-size: 22px;
+
+      font-size: 25px;
+
       font-weight: 800;
+
       color: #075c43;
+
       line-height: 1.1;
+
+      white-space: nowrap;
+
     }
+
 
     .brand-tagline {
-      font-size: 13px;
+
+      font-size: 16px;
+
       color: #69756f;
-      margin-top: 3px;
+
+      margin-top: 4px;
+
+      white-space: nowrap;
+
     }
 
-    .menu-btn {
-      width: 45px;
-      height: 45px;
-      border: 0;
-      border-radius: 14px;
-      background: #075c43;
-      color: white;
-      font-size: 23px;
+
+    /* =====================================================
+       BOUTON MENU
+    ===================================================== */
+
+    #menuButton {
+
+      position: absolute !important;
+
+      top: 50% !important;
+
+      right: 0 !important;
+
+      transform:
+        translateY(-50%) !important;
+
+      width: 58px !important;
+
+      height: 58px !important;
+
+      border: none !important;
+
+      border-radius: 18px !important;
+
+      background: #0b6b4f !important;
+
+      color: white !important;
+
+      font-size: 32px !important;
+
+      line-height: 1 !important;
+
+      cursor: pointer;
+
+      display: flex !important;
+
+      align-items: center !important;
+
+      justify-content: center !important;
+
+      flex-shrink: 0 !important;
+
+      box-shadow:
+        0 6px 18px rgba(0,0,0,0.15);
+
+      z-index: 1001 !important;
+
     }
+
+
+    #menuButton:hover {
+
+      background: #064936 !important;
+
+    }
+
+
+    #menuButton:active {
+
+      transform:
+        translateY(-50%)
+        scale(0.96) !important;
+
+    }
+
+
+    /* =====================================================
+       CARTE DE CONNEXION
+    ===================================================== */
 
     .auth-container {
+
       max-width: 600px;
+
       margin: 35px auto;
-      padding: 0 18px 40px;
+
+      padding:
+        0 18px 40px;
+
     }
+
 
     .auth-card {
-      background: rgba(255,255,255,.96);
-      border: 1px solid #e1ebe5;
+
+      background:
+        rgba(255,255,255,.96);
+
+      border:
+        1px solid #e1ebe5;
+
       border-radius: 25px;
-      padding: 32px 24px;
-      box-shadow: 0 15px 45px rgba(0,70,45,.09);
+
+      padding:
+        32px 24px;
+
+      box-shadow:
+        0 15px 45px
+        rgba(0,70,45,.09);
+
     }
+
 
     .auth-icon {
+
       width: 70px;
+
       height: 70px;
-      margin: 0 auto 15px;
+
+      margin:
+        0 auto 15px;
+
       border-radius: 50%;
+
       background: #e7f7ed;
+
       display: flex;
+
       align-items: center;
+
       justify-content: center;
+
       font-size: 32px;
+
     }
+
 
     .auth-title {
+
       text-align: center;
+
       color: #073e30;
+
       font-size: 32px;
+
       margin: 0;
+
     }
+
 
     .auth-subtitle {
+
       text-align: center;
+
       color: #66736d;
+
       font-size: 16px;
+
       line-height: 1.5;
-      margin: 10px auto 26px;
+
+      margin:
+        10px auto 26px;
+
     }
+
+
+    /* =====================================================
+       FORMULAIRE
+    ===================================================== */
 
     .auth-form {
+
       display: flex;
+
       flex-direction: column;
+
       gap: 14px;
+
     }
+
 
     .auth-input {
+
       width: 100%;
+
       box-sizing: border-box;
+
       padding: 17px 18px;
-      border: 1.5px solid #d9e2de;
+
+      border:
+        1.5px solid #d9e2de;
+
       border-radius: 16px;
+
       font-size: 17px;
+
       outline: none;
+
       background: #fff;
+
     }
+
 
     .auth-input:focus {
+
       border-color: #087653;
-      box-shadow: 0 0 0 3px rgba(8,118,83,.10);
+
+      box-shadow:
+        0 0 0 3px
+        rgba(8,118,83,.10);
+
     }
+
 
     .auth-button {
+
       width: 100%;
+
       border: 0;
+
       border-radius: 16px;
+
       padding: 17px;
+
       margin-top: 4px;
+
       background: #087653;
+
       color: white;
+
       font-size: 18px;
+
       font-weight: 700;
+
       cursor: pointer;
+
     }
+
 
     .auth-button:active {
+
       transform: scale(.99);
+
     }
+
+
+    /* =====================================================
+       LIEN INSCRIPTION
+    ===================================================== */
 
     .auth-link {
+
       text-align: center;
+
       margin-top: 22px;
+
       font-size: 16px;
+
       color: #596760;
+
     }
+
 
     .auth-link a {
+
       color: #087653;
+
       font-weight: 700;
+
       text-decoration: none;
+
     }
+
+
+    /* =====================================================
+       MESSAGE
+    ===================================================== */
 
     #message {
+
       text-align: center;
+
       margin-top: 18px;
+
       font-size: 15px;
+
     }
+
 
     #message.success {
+
       color: #087653;
+
     }
+
 
     #message.error {
+
       color: #c62828;
+
     }
 
-    @media (max-width: 480px) {
+
+    /* =====================================================
+       MOBILE
+    ===================================================== */
+
+    @media (max-width: 650px) {
+
       .auth-header {
-        padding: 12px 15px;
+
+        padding:
+          12px 15px;
+
       }
+
+
+      .auth-brand.container {
+
+        width: 100% !important;
+
+        max-width: none !important;
+
+        margin: 0 !important;
+
+        padding:
+          0 68px 0 0 !important;
+
+        min-height: 58px !important;
+
+        display: flex !important;
+
+        flex-direction: row !important;
+
+        align-items: center !important;
+
+        justify-content: flex-start !important;
+
+      }
+
+
+      .brand-logo {
+
+        width: 58px;
+
+        height: 58px;
+
+        font-size: 30px;
+
+      }
+
+
+      .brand-left {
+
+        gap: 10px;
+
+        min-width: 0;
+
+      }
+
+
+      .brand-name {
+
+        font-size: 21px;
+
+      }
+
+
+      .brand-tagline {
+
+        font-size: 14px;
+
+      }
+
+
+      #menuButton {
+
+        width: 58px !important;
+
+        height: 58px !important;
+
+        right: 0 !important;
+
+        top: 50% !important;
+
+        transform:
+          translateY(-50%) !important;
+
+      }
+
 
       .auth-container {
+
         margin: 22px auto;
-        padding: 0 12px 30px;
+
+        padding:
+          0 12px 30px;
+
       }
+
 
       .auth-card {
-        padding: 27px 18px;
+
+        padding:
+          27px 18px;
+
         border-radius: 22px;
+
       }
+
 
       .auth-title {
+
         font-size: 29px;
+
       }
 
+
       .auth-input {
+
         font-size: 16px;
+
         padding: 16px;
+
       }
+
     }
+
+
+    /* =====================================================
+       TRÈS PETIT ÉCRAN
+    ===================================================== */
+
+    @media (max-width: 380px) {
+
+      .brand-name {
+
+        font-size: 19px;
+
+      }
+
+
+      .brand-tagline {
+
+        font-size: 12px;
+
+      }
+
+
+      .brand-logo {
+
+        width: 52px;
+
+        height: 52px;
+
+        font-size: 27px;
+
+      }
+
+
+      #menuButton {
+
+        width: 54px !important;
+
+        height: 54px !important;
+
+        font-size: 29px !important;
+
+      }
+
+    }
+
   </style>
+
 </head>
+
 
 <body class="auth-page">
 
-<header class="auth-header">
-  <div class="auth-brand container">
 
-    <div class="brand-left">
-      <div class="brand-logo">🌿</div>
+  <!-- =====================================================
+       HEADER
+  ====================================================== -->
 
-      <div>
-        <div class="brand-name">MON SUCCÈS</div>
-        <div class="brand-tagline">
-          Épargner • Partager • Réussir
+  <header class="auth-header">
+
+    <div class="auth-brand container">
+
+      <div class="brand-left">
+
+        <div class="brand-logo">
+          🌿
         </div>
+
+        <div>
+
+          <div class="brand-name">
+            MON SUCCÈS
+          </div>
+
+          <div class="brand-tagline">
+            Épargner • Partager • Réussir
+          </div>
+
+        </div>
+
       </div>
-    </div>
 
-    <button
-      id="menuButton"
-      class="menu-btn"
-      type="button"
-      aria-label="Ouvrir le menu"
-    >
-      ☰
-    </button>
 
-  </div>
-</header>
-
-<main class="auth-container">
-  <section class="auth-card">
-
-    <div class="auth-icon">🔐</div>
-
-    <h1 class="auth-title">Connexion</h1>
-
-    <p class="auth-subtitle">
-      Connectez-vous à votre compte pour accéder
-      à toutes les fonctionnalités.
-    </p>
-
-    <form id="loginForm" class="auth-form">
-
-      <input
-        class="auth-input"
-        type="email"
-        id="email"
-        placeholder="Email"
-        required
+      <button
+        id="menuButton"
+        class="menu-btn"
+        type="button"
+        aria-label="Ouvrir le menu"
       >
-
-      <input
-        class="auth-input"
-        type="password"
-        id="password"
-        placeholder="Mot de passe"
-        required
-      >
-
-      <button class="auth-button" type="submit">
-        Se connecter →
+        ☰
       </button>
 
-    </form>
-
-    <div id="message"></div>
-
-    <div class="auth-link">
-      Pas encore de compte ?
-      <a href="inscription.html">Inscrivez-vous</a>
     </div>
 
-  </section>
-</main>
+  </header>
 
-<script type="module" src="js/auth.js"></script>
-<script type="module" src="js/app.js"></script>
+
+  <!-- =====================================================
+       CONNEXION
+  ====================================================== -->
+
+  <main class="auth-container">
+
+    <section class="auth-card">
+
+
+      <div class="auth-icon">
+        🔐
+      </div>
+
+
+      <h1 class="auth-title">
+        Connexion
+      </h1>
+
+
+      <p class="auth-subtitle">
+
+        Connectez-vous à votre compte pour accéder
+        à toutes les fonctionnalités.
+
+      </p>
+
+
+      <form
+        id="loginForm"
+        class="auth-form"
+      >
+
+
+        <input
+          class="auth-input"
+          type="email"
+          id="email"
+          placeholder="Email"
+          required
+        >
+
+
+        <input
+          class="auth-input"
+          type="password"
+          id="password"
+          placeholder="Mot de passe"
+          required
+        >
+
+
+        <button
+          class="auth-button"
+          type="submit"
+        >
+
+          Se connecter →
+
+        </button>
+
+
+      </form>
+
+
+      <div id="message"></div>
+
+
+      <div class="auth-link">
+
+        Pas encore de compte ?
+
+        <a href="inscription.html">
+          Inscrivez-vous
+        </a>
+
+      </div>
+
+
+    </section>
+
+  </main>
+
+
+  <!-- =====================================================
+       JAVASCRIPT
+  ====================================================== -->
+
+  <script
+    type="module"
+    src="js/auth.js"
+  ></script>
+
+  <script
+    type="module"
+    src="js/app.js"
+  ></script>
+
 
 </body>
-</html>
+
+  </html>
