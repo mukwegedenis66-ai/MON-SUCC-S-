@@ -1,76 +1,101 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Mon compte - Mon Succès</title>
+  <title>MON SUCCÈS — Mon compte</title>
+  <meta name="description" content="Votre espace personnel MON SUCCÈS — solde, demandes de prêt, et historique d'épargne.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://mukwegedenis66-ai.github.io/MON-SUCC-S-/compte.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="MON SUCCÈS — Mon compte">
+  <meta property="og:description" content="Accédez à votre solde, demandes de prêt et historique d'épargne.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mukwegedenis66-ai.github.io/MON-SUCC-S-/compte.html">
+  <meta property="og:image" content="/MON-SUCC-S-/assets/logo.svg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <meta name="theme-color" content="#0b6b4f">
 
   <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="/MON-SUCC-S-/assets/logo.svg" type="image/svg+xml">
 </head>
 
 <body>
+  <header class="home-header">
+    <div class="container">
+      <a href="index.html" class="home-brand" aria-label="Accueil - MON SUCCÈS">
+        <div class="home-brand-icon" aria-hidden="true">
+          <img src="assets/logo.svg" alt="Logo MON SUCCÈS" style="width:100%;height:100%;object-fit:contain;">
+        </div>
+        <div class="home-brand-text"><strong>MON SUCCÈS</strong><span>Épargner • Partager • Réussir</span></div>
+      </a>
 
-  <header>
-    <h1>MON SUCCÈS</h1>
-
-    <nav>
-      <a href="index.html">Accueil</a>
-      <a href="epargne.html">Épargne</a>
-      <a href="pret.html">Prêt</a>
-      <a href="compte.html">Mon compte</a>
-    </nav>
+      <nav class="home-nav" role="navigation" aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="epargne.html">Épargne</a>
+        <a href="pret.html">Prêt</a>
+        <a href="compte.html" aria-current="page">Mon compte</a>
+      </nav>
+    </div>
   </header>
 
   <main>
+    <section class="container dashboard" aria-labelledby="accountTitle">
+      <h1 id="accountTitle" class="text-center">Mon compte</h1>
 
-    <section class="card">
+      <div class="dashboard-grid">
+        <div>
+          <div class="balance-card">
+            <div class="label">Solde épargne</div>
+            <div id="balance" class="amount">0 FCFA</div>
+            <div class="currency">FCFA</div>
+            <div class="progress-container">
+              <div class="progress-bar" aria-hidden="true"><div id="progress" class="progress" style="width:0%"></div></div>
+            </div>
+          </div>
 
-      <h2>👤 Mon compte</h2>
+          <div class="card mt-3" aria-live="polite">
+            <h3>Mes demandes de prêt</h3>
+            <div id="loans">Chargement de vos demandes...</div>
+          </div>
 
-      <div id="accountInfo">
-        Chargement de votre compte...
+          <div class="card mt-3">
+            <h3>Historique</h3>
+            <div id="history">Chargement de l'historique...</div>
+          </div>
+        </div>
+
+        <aside>
+          <div class="card">
+            <h3>Actions</h3>
+            <p class="text-muted">Gérer votre compte et vos préférences.</p>
+            <a href="epargne.html" class="btn btn-outline">Voir mon épargne</a>
+            <a href="pret.html" class="btn mt-1">Demander un prêt</a>
+          </div>
+
+          <div class="card mt-3">
+            <h3>Déconnexion</h3>
+            <button id="logoutButton" class="btn btn-outline" type="button">Se déconnecter</button>
+          </div>
+        </aside>
       </div>
-
     </section>
-
-    <section class="card">
-
-      <h2>💰 Mes demandes de prêt</h2>
-
-      <div id="loans">
-        Chargement de vos demandes...
-      </div>
-
-    </section>
-
-    <section class="card">
-
-      <h2>📊 Mon épargne</h2>
-
-      <p>
-        Consultez votre épargne et votre historique.
-      </p>
-
-      <a href="epargne.html">
-        <button type="button">
-          Voir mon épargne
-        </button>
-      </a>
-
-    </section>
-
-    <section class="card">
-
-      <button id="logoutButton" type="button">
-        Se déconnecter
-      </button>
-
-    </section>
-
   </main>
 
-  <script type="module" src="js/compte.js?v=2"></script>
+  <footer>
+    <div class="container">
+      <div><h3>MON SUCCÈS</h3><p>Épargner. Préparer. Réussir.</p></div>
+      <div><h3>Navigation</h3><p><a href="index.html">Accueil</a><br><a href="epargne.html">Épargne</a><br><a href="pret.html">Prêt</a></p></div>
+      <div class="footer-bottom">© 2026 MON SUCCÈS — Tous droits réservés.</div>
+    </div>
+  </footer>
 
-<script type="module" src="js/notification.js?v=1"></script>
-      </html>
+  <script type="module" src="js/compte.js?v=2"></script>
+  <script type="module" src="js/notification.js?v=1"></script>
+</body>
+
+</html>
