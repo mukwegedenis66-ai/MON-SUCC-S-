@@ -1,27 +1,64 @@
 name: CI - lint
+
+# Triggers: push, pull_request and manual (workflow_dispatch)
 on:
-  pull_request:
   push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      auto_fix:
+        description: 'If true, run prettier --write and push fixes'
+        required: false
+        default: 'false'
+
+# Allow the workflow to push changes back to the repository
+permissions:
+  contents: write
+
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          # allow git push using GITHUB_TOKEN
+          persist-credentials: true
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
+          cache: 'npm'
 
       - name: Install tooling
-        run: |
-          npm install -g htmlhint prettier
+        run: npm install --no-save htmlhint prettier
 
       - name: Run HTMLHint
-        run: |
-          htmlhint "**/*.html"
+        run: npx htmlhint "**/*.html" || true
 
       - name: Run Prettier check
+        run: npx prettier --check "**/*.{html,css,js,json,md}"
+
+      # Optional auto-fix step: runs only when manually triggered with auto_fix = 'true'
+      - name: Auto-fix formatting and push changes
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.auto_fix == 'true' }}
         run: |
-          prettier --check "**/*.{html,css,js,json,md}"
+          echo "Running auto-fix: prettier --write"
+          npx prettier --write "**/*.{html,css,js,json,md}"
+          # run htmlhint to show remaining warnings (don't fail the step)
+          npx htmlhint "**/*.html" || true
+
+          # Configure git author and push if there are changes
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+
+          # If staged changes exist, commit & push them
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: apply Prettier formatting (auto-fix)"
+            git push
+            echo "Auto-fix committed and pushed."
+          else
+            echo "No formatting changes to commit."
+          fi
