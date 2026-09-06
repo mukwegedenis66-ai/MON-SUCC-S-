@@ -1,0 +1,16 @@
+  - name: Setup Node.js
+    uses: actions/setup-node@v4
+    with:
+      node-version: '18'
+
+  - name: Install tooling
+    run: |
+      npm install -g htmlhint prettier
+
+  - name: Run HTMLHint
+    run: |
+      htmlhint "**/*.html"
+
+  - name: Run Prettier check
+    run: |
+      prettier --check "**/*.{html,css,js,json,md}"
