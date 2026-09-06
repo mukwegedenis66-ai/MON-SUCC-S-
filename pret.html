@@ -1,88 +1,101 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Prêt - Mon Succès</title>
+  <title>MON SUCCÈS — Demande de prêt</title>
+  <meta name="description" content="Faites votre demande de prêt simplement et rapidement avec MON SUCCÈS.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://mukwegedenis66-ai.github.io/MON-SUCC-S-/pret.html">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="MON SUCCÈS — Demande de prêt">
+  <meta property="og:description" content="Faites votre demande de prêt simplement et rapidement avec MON SUCCÈS.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mukwegedenis66-ai.github.io/MON-SUCC-S-/pret.html">
+  <meta property="og:image" content="/MON-SUCC-S-/assets/logo.svg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <meta name="theme-color" content="#0b6b4f">
 
   <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="/MON-SUCC-S-/assets/logo.svg" type="image/svg+xml">
 </head>
 
 <body>
 
-  <header>
-    <h1>MON SUCCÈS</h1>
+  <header class="home-header">
+    <div class="container">
+      <a href="index.html" class="home-brand" aria-label="Accueil - MON SUCCÈS">
+        <div class="home-brand-icon" aria-hidden="true">
+          <img src="assets/logo.svg" alt="Logo MON SUCCÈS" style="width:100%;height:100%;object-fit:contain;">
+        </div>
+        <div class="home-brand-text"><strong>MON SUCCÈS</strong><span>Épargner • Partager • Réussir</span></div>
+      </a>
 
-    <nav>
-      <a href="index.html">Accueil</a>
-      <a href="epargne.html">Épargne</a>
-      <a href="pret.html">Prêt</a>
-      <a href="compte.html">Mon compte</a>
-    </nav>
+      <nav class="home-nav" role="navigation" aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="epargne.html">Épargne</a>
+        <a href="pret.html" aria-current="page">Prêt</a>
+        <a href="compte.html">Mon compte</a>
+      </nav>
+    </div>
   </header>
 
   <main>
+    <section class="container" style="padding:48px 0;">
+      <div class="card">
+        <h2>Demande de prêt</h2>
+        <p>Faites votre demande de prêt simplement et rapidement.</p>
 
-    <section class="card">
+        <form id="pretForm" aria-label="Formulaire de demande de prêt">
+          <div class="form-group">
+            <label for="montant">Montant souhaité (FCFA)</label>
+            <input type="number" id="montant" name="montant" placeholder="Exemple : 100000" min="1000" required>
+          </div>
 
-      <h2>💰 Demande de prêt</h2>
+          <div class="form-group">
+            <label for="duree">Durée de remboursement</label>
+            <select id="duree" name="duree" required>
+              <option value="">Choisir une durée</option>
+              <option value="1">1 mois</option>
+              <option value="2">2 mois</option>
+              <option value="3">3 mois</option>
+              <option value="6">6 mois</option>
+              <option value="12">12 mois</option>
+            </select>
+          </div>
 
-      <p>
-        Faites votre demande de prêt simplement et rapidement.
-      </p>
+          <div class="form-group">
+            <label for="motif">Motif du prêt</label>
+            <textarea id="motif" name="motif" placeholder="Expliquez brièvement l'utilisation du prêt" rows="4" required></textarea>
+          </div>
 
-      <form id="pretForm">
+          <button class="btn" type="submit">Envoyer ma demande</button>
+        </form>
 
-        <label for="montant">
-          Montant souhaité (FCFA)
-        </label>
-
-        <input
-          type="number"
-          id="montant"
-          placeholder="Exemple : 100000"
-          min="1000"
-          required
-        >
-
-        <label for="duree">
-          Durée de remboursement
-        </label>
-
-        <select id="duree" required>
-          <option value="">Choisir une durée</option>
-          <option value="1">1 mois</option>
-          <option value="2">2 mois</option>
-          <option value="3">3 mois</option>
-          <option value="6">6 mois</option>
-          <option value="12">12 mois</option>
-        </select>
-
-        <label for="motif">
-          Motif du prêt
-        </label>
-
-        <textarea
-          id="motif"
-          placeholder="Expliquez brièvement l'utilisation du prêt"
-          rows="4"
-          required
-        ></textarea>
-
-        <button type="submit">
-          Envoyer ma demande
-        </button>
-
-      </form>
-
-      <div id="message"></div>
-
+        <div id="message" role="status" aria-live="polite"></div>
+      </div>
     </section>
-
   </main>
 
-  <script type="module" src="js/pret.js?v=1"></script>
+  <footer>
+    <div class="container">
+      <div>
+        <h3>MON SUCCÈS</h3>
+        <p>Épargner. Préparer. Réussir.</p>
+      </div>
+      <div>
+        <h3>Navigation</h3>
+        <p><a href="index.html">Accueil</a><br><a href="epargne.html">Épargne</a><br><a href="pret.html">Prêt</a></p>
+      </div>
+      <div class="footer-bottom">© 2026 MON SUCCÈS — Tous droits réservés.</div>
+    </div>
+  </footer>
 
+  <script type="module" src="js/pret.js?v=1"></script>
 </body>
-          </html>
+
+</html>
