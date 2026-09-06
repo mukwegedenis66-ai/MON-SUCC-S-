@@ -1,16 +1,27 @@
-  - name: Setup Node.js
-    uses: actions/setup-node@v4
-    with:
-      node-version: '18'
+name: CI - lint
+on:
+  pull_request:
+  push:
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-  - name: Install tooling
-    run: |
-      npm install -g htmlhint prettier
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
 
-  - name: Run HTMLHint
-    run: |
-      htmlhint "**/*.html"
+      - name: Install tooling
+        run: |
+          npm install -g htmlhint prettier
 
-  - name: Run Prettier check
-    run: |
-      prettier --check "**/*.{html,css,js,json,md}"
+      - name: Run HTMLHint
+        run: |
+          htmlhint "**/*.html"
+
+      - name: Run Prettier check
+        run: |
+          prettier --check "**/*.{html,css,js,json,md}"
