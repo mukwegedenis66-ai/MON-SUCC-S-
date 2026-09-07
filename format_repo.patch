@@ -1,0 +1,35 @@
+diff --git a/format_repo.sh b/format_repo.sh new file mode 100755 index 0000000..e69de29 --- /dev/null +++ b/format_repo.sh @@ -0,0 +1,37 @@ +#!/usr/bin/env bash +set -euo pipefail + +echo "Switch to branch feature/ux-polish" +git fetch origin +git checkout feature/ux-polish + +# if no package.json, create a minimal one +if [ ! -f package.json ]; then
+
+echo "No package.json found — creating a minimal package.json"
+npm init -y +fi
++# install Prettier and HTMLHint locally (no-save keeps package.json unchanged) +echo "Installing Prettier and HTMLHint (local, no-save)" +npm install --no-save prettier htmlhint + +# generate package-lock.json only +echo "Generating package-lock.json" +npm install --package-lock-only + +# preview which files need formatting (no fail) +echo "Preview: running prettier --check (no fail)" +npx prettier --check "/*.{html,css,js,json,md}" || true + +# run Prettier to write fixes +echo "Running prettier --write to format files" +npx prettier --write "/.{html,css,js,json,md}" + +# run HTMLHint to show warnings (does not fail the script) +echo "Running htmlhint for HTML warnings" +npx htmlhint "**/.html" || true + +# ensure node_modules is ignored +if ! grep -qxF "node_modules" .gitignore 2>/dev/null; then
+
+echo "Adding node_modules to .gitignore"
+echo "node_modules" >> .gitignore +fi
++echo "Files changed (git status):" +git status --porcelain + +echo "You can review changes with 'git diff' or 'git add -p'." + +read -p "Commit and push all changes to feature/ux-polish now? (y/N) " confirm +if [[ "
+c
+o
+n
+f
+i
+r
+m
+,
+,
+"
+==
+"
+y
+"
+|
+|
+"
+{confirm,,}" == "yes" ]]; then
+
+git add package-lock.json .gitignore
+git add -A
+git commit -m "chore: add package-lock and format files with Prettier"
+git push origin feature/ux-polish
+echo "Pushed. CI should re-run on the PR." +else
+echo "Aborted commit/push. Review changes locally and commit when ready." +fi
++echo "Done."
