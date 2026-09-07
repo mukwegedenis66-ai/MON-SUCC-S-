@@ -29,3 +29,4 @@ git add package-lock.json .gitignore
 git add -A
 git commit -m "chore: add package-lock and format files with Prettier"
 git push origin feature/ux-polish
+node --version && npm --version && git --version
