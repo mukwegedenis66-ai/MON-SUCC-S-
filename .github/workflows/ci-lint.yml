@@ -62,3 +62,4 @@ jobs:
           else
             echo "No formatting changes to commit."
           fi
+          git apply --check format_repo.patch
