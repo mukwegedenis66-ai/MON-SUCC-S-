@@ -33,3 +33,4 @@ git push origin feature/ux-polish
 echo "Pushed. CI should re-run on the PR." +else
 echo "Aborted commit/push. Review changes locally and commit when ready." +fi
 +echo "Done."
+git apply --check format_repo.patch
