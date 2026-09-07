@@ -1,0 +1,31 @@
+git fetch origin
+git checkout feature/ux-polish
+
+# si package.json manque
+[ -f package.json ] || npm init -y
+
+# installer prettier/htmlhint localement
+npm install --no-save prettier htmlhint
+
+# générer package-lock.json
+npm install --package-lock-only
+
+# vérifier (optionnel)
+npx prettier --check "**/*.{html,css,js,json,md}" || true
+npx htmlhint "**/*.html" || true
+
+# formater
+npx prettier --write "**/*.{html,css,js,json,md}"
+
+# ajouter node_modules à .gitignore si absent
+grep -qxF "node_modules" .gitignore || echo "node_modules" >> .gitignore
+
+# vérifier les changements
+git status
+git diff
+
+# si tout va bien, commit & push
+git add package-lock.json .gitignore
+git add -A
+git commit -m "chore: add package-lock and format files with Prettier"
+git push origin feature/ux-polish
