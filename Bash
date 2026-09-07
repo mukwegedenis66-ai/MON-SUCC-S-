@@ -30,3 +30,4 @@ git add -A
 git commit -m "chore: add package-lock and format files with Prettier"
 git push origin feature/ux-polish
 node --version && npm --version && git --version
+git fetch origin git checkout feature/ux-polish git status --porcelain git log -1 --oneline
