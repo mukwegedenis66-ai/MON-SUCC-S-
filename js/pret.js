@@ -11,16 +11,11 @@ form?.addEventListener("submit", async (e) => {
 
   const {
     data: { user },
-    error: userError
   } = await supabase.auth.getUser();
 
-  if (userError) {
-    message.textContent = userError.message;
-    return;
-  }
-
   if (!user) {
-    message.textContent = "Veuillez vous connecter avant de faire une demande de prêt.";
+    message.textContent =
+      "Veuillez vous connecter avant de faire une demande de prêt.";
     return;
   }
 
@@ -48,13 +43,13 @@ form?.addEventListener("submit", async (e) => {
     montant,
     duree_mois: duree,
     motif,
-    statut: "en_attente"
+    statut: "en_attente",
   });
 
   if (error) {
     message.textContent = error.message;
-    return;
+  } else {
+    message.textContent = "Votre demande de prêt a été soumise avec succès !";
+    form.reset();
   }
-
-  window.location.href = "confirmation-pret.html";
 });
