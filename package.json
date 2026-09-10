@@ -7,7 +7,7 @@
     "htmlhint": "^1.0.5"
   },
   "scripts": {
-    "format": "prettier --write \"**/*.{html,css,js,json,md}\"",
-    "lint:html": "htmlhint \"**/*.html\" || true"
+    "format": "prettier --write '/**/*.{html,css,js,json,md}'",
+    "lint:html": "htmlhint '/**/*.html' || true"
   }
 }
