@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo MON SUCCÈS">
+  <rect width="240" height="240" rx="28" fill="#0b6b4f"/>
+  <g transform="translate(40,40)" fill="#fff">
+    <path d="M64 8c-8 0-28 10-28 34 0 24 20 44 28 44s28-20 28-44C92 18 72 8 64 8zm0 12c4.8 0 12 6.4 12 22s-7.2 22-12 22-12-6.4-12-22 7.2-22 12-22z"/>
+  </g>
+  <text x="120" y="190" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-weight="800" font-size="32" fill="#ffffff">MON</text>
+</svg>
